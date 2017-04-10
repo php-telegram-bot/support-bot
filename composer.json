@@ -1,0 +1,23 @@
+{
+    "name": "telegram-bot/support-bot",
+    "type": "project",
+    "description": "Friendly and helpful bot for t.me/PHP_Telegram_Support_Bot",
+    "keywords": ["telegram", "bot", "manager"],
+    "license": "MIT",
+    "homepage": "https://github.com/php-telegram-bot/support-bot",
+    "support": {
+        "issues": "https://github.com/php-telegram-bot/support-bot/issues",
+        "source": "https://github.com/php-telegram-bot/support-bot"
+    },
+    "authors": [
+        {
+            "name": "PHP Telegram Bot Team",
+            "homepage": "https://github.com/php-telegram-bot/support-bot/graphs/contributors",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "noplanman/telegram-bot-manager": "^0.42",
+        "vlucas/phpdotenv": "^2.4"
+    }
+}
