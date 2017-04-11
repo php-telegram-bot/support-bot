@@ -33,12 +33,12 @@ try {
         ],
         'download_path'    => getenv('SB_PATH_DOWNLOAD'),
         'upload_path'      => getenv('SB_PATH_UPLOAD'),
-        'commands_paths'   => [__DIR__ . '/Commands'],
+        'commands_paths'   => [__DIR__ . '/commands'],
         'logging'          => [
             // Focus mainly on errors, no need to log everything.
-            'error' => __DIR__ . '/../log/' . getenv('SB_BOT_USERNAME') . '_error.log',
-//            'debug'  => __DIR__ . '/../log/' . getenv('SB_BOT_USERNAME') . '_debug.log',
-//            'update' => __DIR__ . '/../log/' . getenv('SB_BOT_USERNAME') . '_update.log',
+            'error' => __DIR__ . '/../logs/' . getenv('SB_BOT_USERNAME') . '_error.log',
+//            'debug'  => __DIR__ . '/../logs/' . getenv('SB_BOT_USERNAME') . '_debug.log',
+//            'update' => __DIR__ . '/../logs/' . getenv('SB_BOT_USERNAME') . '_update.log',
         ],
 //        'command_configs'  => [],
     ]);
