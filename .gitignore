@@ -1,2 +1,5 @@
 composer.phar
+/logs/*
+!/logs/.gitkeep
 /vendor/
+/.env
