@@ -18,6 +18,7 @@
     ],
     "require": {
         "noplanman/telegram-bot-manager": "^0.42",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "noplanman/service-webhook-handler": "dev-master"
     }
 }

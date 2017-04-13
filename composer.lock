@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c73a68d61a25bf4fcc7a226fbc69620e",
+    "content-hash": "79f2fa53d7105a3a2aefb4c1657c6b17",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -316,6 +316,49 @@
             "time": "2017-03-13T07:08:03+00:00"
         },
         {
+            "name": "noplanman/service-webhook-handler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/noplanman/service-webhook-handler.git",
+                "reference": "e8cf0bac7fed798483c637330532971ed225db94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/noplanman/service-webhook-handler/zipball/e8cf0bac7fed798483c637330532971ed225db94",
+                "reference": "e8cf0bac7fed798483c637330532971ed225db94",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NPM\\ServiceWebhookHandler\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Armando Lüscher",
+                    "email": "armando@noplanman.ch",
+                    "homepage": "https://noplanman.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library to handle Webhooks from various services.",
+            "homepage": "https://github.com/noplanman/service-webhook-handler",
+            "keywords": [
+                "github",
+                "handler",
+                "services",
+                "travis-ci",
+                "webhooks"
+            ],
+            "time": "2017-04-13 10:13:58"
+        },
+        {
             "name": "noplanman/telegram-bot-manager",
             "version": "0.42.0.1",
             "source": {
@@ -515,7 +558,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "noplanman/service-webhook-handler": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
