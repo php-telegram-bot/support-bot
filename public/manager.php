@@ -5,44 +5,42 @@ namespace TelegramBot\SupportBot;
 use Dotenv\Dotenv;
 use Longman\TelegramBot\Exception\TelegramLogException;
 use Longman\TelegramBot\TelegramLog;
-use NPM\TelegramBotManager\BotManager;
+use TelegramBot\TelegramBotManager\BotManager;
 
 // Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
 (new Dotenv(__DIR__ . '/..'))->load();
 
 try {
-    $bot = new BotManager([
-        // Vitals!
-        'api_key'          => getenv('SB_API_KEY'),
-        'bot_username'     => getenv('SB_BOT_USERNAME'),
-        'secret'           => getenv('SB_SECRET'),
-        'webhook'          => getenv('SB_WEBHOOK'),
-        'max_connections'  => 5,
-        'validate_request' => true,
-//        'allowed_updates' => ['message', 'edited_message', 'inline_query', 'chosen_inline_result', 'callback_query'],
+    // Vitals!
+    $params = [
+        'api_key' => getenv('TG_API_KEY'),
+    ];
+    foreach (['bot_username', 'secret'] as $extra) {
+        if ($param = getenv('TG_' . strtoupper($extra))) {
+            $params[$extra] = $param;
+        }
+    }
 
-        // Optional extras.
-        'limiter'          => true,
-        'admins'           => getenv('SB_ADMINS') ? array_map('intval', explode(',', getenv('SB_ADMINS') ?: '')) : [],
-        'mysql'            => [
-            'host'     => getenv('SB_DB_HOST'),
-            'user'     => getenv('SB_DB_USER'),
-            'password' => getenv('SB_DB_PASS'),
-            'database' => getenv('SB_DB_NAME'),
-        ],
-        'download_path'    => getenv('SB_PATH_DOWNLOAD'),
-        'upload_path'      => getenv('SB_PATH_UPLOAD'),
-        'commands_paths'   => [__DIR__ . '/commands'],
-        'logging'          => [
-            // Focus mainly on errors, no need to log everything.
-            'error' => __DIR__ . '/../logs/' . getenv('SB_BOT_USERNAME') . '_error.log',
-//            'debug'  => __DIR__ . '/../logs/' . getenv('SB_BOT_USERNAME') . '_debug.log',
-//            'update' => __DIR__ . '/../logs/' . getenv('SB_BOT_USERNAME') . '_update.log',
-        ],
-//        'command_configs'  => [],
-    ]);
+    // Database connection.
+    if (getenv('TG_DB_HOST')) {
+        $params['mysql'] = [
+            'host'     => getenv('TG_DB_HOST'),
+            'user'     => getenv('TG_DB_USER'),
+            'password' => getenv('TG_DB_PASSWORD'),
+            'database' => getenv('TG_DB_DATABASE'),
+        ];
+    }
 
+    // Optional extras.
+    $extras = ['admins', 'botan', 'commands', 'cron', 'limiter', 'logging', 'paths', 'valid_ips', 'webhook'];
+    foreach ($extras as $extra) {
+        if ($param = getenv('TG_' . strtoupper($extra))) {
+            $params[$extra] = json_decode($param, true);
+        }
+    }
+
+    $bot = new BotManager($params);
     $bot->run();
 } catch (TelegramLogException $e) {
     // Silence... beautiful silence =)
