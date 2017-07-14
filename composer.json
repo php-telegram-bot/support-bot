@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php-telegram-bot/telegram-bot-manager": "^1.0",
+        "php-telegram-bot/telegram-bot-manager": "^1.2",
         "noplanman/service-webhook-handler": "^0.1",
         "vlucas/phpdotenv": "^2.4"
     }

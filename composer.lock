@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "deef34a80480bce2c09c2e4fd02b5340",
+    "content-hash": "950ce821a068f78dc24af1899ca45055",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.2.3",
+            "version": "6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006"
+                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d6c6cc55186db87b7dc5009827429ba4e9dc006",
-                "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
                 "shasum": ""
             },
             "require": {
@@ -27,8 +27,11 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^4.0 || ^5.0",
                 "psr/log": "^1.0"
+            },
+            "suggest": {
+                "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
@@ -66,7 +69,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-02-28T22:50:30+00:00"
+            "time": "2017-06-22T18:50:49+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -242,16 +245,16 @@
         },
         {
             "name": "longman/telegram-bot",
-            "version": "0.44.1",
+            "version": "0.45.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/core.git",
-                "reference": "e522050a5e2ac73a4c0fa47705896da0df37de3a"
+                "reference": "6d1075280c5df13d02cca0893433138ea927e6b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/e522050a5e2ac73a4c0fa47705896da0df37de3a",
-                "reference": "e522050a5e2ac73a4c0fa47705896da0df37de3a",
+                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/6d1075280c5df13d02cca0893433138ea927e6b4",
+                "reference": "6d1075280c5df13d02cca0893433138ea927e6b4",
                 "shasum": ""
             },
             "require": {
@@ -291,20 +294,20 @@
                 "bot",
                 "telegram"
             ],
-            "time": "2017-04-25T21:28:23+00:00"
+            "time": "2017-06-25T09:25:56+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +328,7 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "~5.3"
+                "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -369,7 +372,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-03-13T07:08:03+00:00"
+            "time": "2017-06-19T01:22:40+00:00"
         },
         {
             "name": "noplanman/service-webhook-handler",
@@ -416,21 +419,21 @@
         },
         {
             "name": "php-telegram-bot/telegram-bot-manager",
-            "version": "1.0.1",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/telegram-bot-manager.git",
-                "reference": "eb794c1700ff4de732187a3d7853b427004460f2"
+                "reference": "9493b0b0052e1de1459951b882033b11e060c66f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/eb794c1700ff4de732187a3d7853b427004460f2",
-                "reference": "eb794c1700ff4de732187a3d7853b427004460f2",
+                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/9493b0b0052e1de1459951b882033b11e060c66f",
+                "reference": "9493b0b0052e1de1459951b882033b11e060c66f",
                 "shasum": ""
             },
             "require": {
                 "longman/ip-tools": "^1.2",
-                "longman/telegram-bot": "^0.44",
+                "longman/telegram-bot": "^0.45",
                 "php": "^7.0"
             },
             "require-dev": {
@@ -463,7 +466,7 @@
                 "manager",
                 "telegram"
             ],
-            "time": "2017-05-09T11:20:08+00:00"
+            "time": "2017-07-11T23:11:05+00:00"
         },
         {
             "name": "psr/http-message",
