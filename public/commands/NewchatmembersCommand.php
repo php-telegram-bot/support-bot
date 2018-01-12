@@ -31,7 +31,7 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '1.2.0';
+    protected $version = '1.0.0';
 
     /**
      * Command execute method
@@ -68,34 +68,4 @@ class NewchatmembersCommand extends SystemCommand
         return Request::sendMessage($data);
 		
     }
-}
-
-function glclear($glist) {
-    
-    $glist = str_replace('<header class="entry-header">',"",$glist);
-    $glist = str_replace('<h1 class="entry-title">',"",$glist);
-    $glist = str_replace('</h1>',"",$glist);
-    $glist = str_replace('</header><!-- .entry-header -->',"",$glist);
-    $glist = str_replace('<div class="entry-content">',"",$glist);
-    $glist = str_replace('<p>',"",$glist);
-    $glist = str_replace('<strong>',"",$glist);
-    $glist = str_replace('<br />',"",$glist);
-    $glist = str_replace('</strong>',"",$glist);
-    $glist = str_replace('</p>',"",$glist);
-    $glist = str_replace('&nbsp;',"",$glist);
-    return $glist;
-}
-
-
-function umlaute($text) {
-    $text = str_replace('&Ouml;',"Ö",$text);
-    $text = str_replace('&ouml;',"ö",$text);
-    $text = str_replace('&Auml;',"Ä",$text);
-    $text = str_replace('&auml;',"ä",$text);
-    $text = str_replace('&Uuml;',"Ü",$text);
-    $text = str_replace('&uuml;',"ü",$text);
-	$text = str_replace('&gt;',">",$text);
-	$text = str_replace('&lt;',"<",$text);
-	$text = str_replace('&szlig;',"ß",$text);
-    return $text;
 }
