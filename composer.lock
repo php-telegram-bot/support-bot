@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c73a68d61a25bf4fcc7a226fbc69620e",
+    "content-hash": "950ce821a068f78dc24af1899ca45055",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.2.3",
+            "version": "6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006"
+                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d6c6cc55186db87b7dc5009827429ba4e9dc006",
-                "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
                 "shasum": ""
             },
             "require": {
@@ -27,8 +27,11 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^4.0 || ^5.0",
                 "psr/log": "^1.0"
+            },
+            "suggest": {
+                "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
@@ -66,7 +69,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-02-28T22:50:30+00:00"
+            "time": "2017-06-22T18:50:49+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -185,30 +188,86 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
-            "name": "longman/telegram-bot",
-            "version": "0.42.0",
+            "name": "longman/ip-tools",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-telegram-bot/core.git",
-                "reference": "25d74af0f47393f1784ab5f02f3fcffaf03d06ff"
+                "url": "https://github.com/akalongman/php-ip-tools.git",
+                "reference": "6c050dfbf91811d14b9b3aa31fb7116eac0f0a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/25d74af0f47393f1784ab5f02f3fcffaf03d06ff",
-                "reference": "25d74af0f47393f1784ab5f02f3fcffaf03d06ff",
+                "url": "https://api.github.com/repos/akalongman/php-ip-tools/zipball/6c050dfbf91811d14b9b3aa31fb7116eac0f0a18",
+                "reference": "6c050dfbf91811d14b9b3aa31fb7116eac0f0a18",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1",
+                "phpunit/phpunit": "~4.1",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Longman\\IPTools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Avtandil Kikabidze aka LONGMAN",
+                    "email": "akalongman@gmail.com",
+                    "homepage": "https://longman.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP IP Tools for manipulation with IPv4 and IPv6",
+            "homepage": "https://github.com/akalongman/php-ip-tools",
+            "keywords": [
+                "IP",
+                "Match",
+                "compare",
+                "ipv4",
+                "ipv6",
+                "mask",
+                "subnet",
+                "tools",
+                "utilities"
+            ],
+            "time": "2016-10-23T20:08:46+00:00"
+        },
+        {
+            "name": "longman/telegram-bot",
+            "version": "0.45.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-telegram-bot/core.git",
+                "reference": "6d1075280c5df13d02cca0893433138ea927e6b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/6d1075280c5df13d02cca0893433138ea927e6b4",
+                "reference": "6d1075280c5df13d02cca0893433138ea927e6b4",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-mbstring": "*",
                 "ext-pdo": "*",
-                "guzzlehttp/guzzle": "~6.0",
-                "monolog/monolog": "^1.19",
-                "php": ">=5.5.0"
+                "guzzlehttp/guzzle": "^6.2",
+                "monolog/monolog": "^1.22",
+                "php": "^5.5|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8",
-                "squizlabs/php_codesniffer": "~2.5"
+                "phpunit/phpunit": "^4.8|^5.7|^6.1",
+                "squizlabs/php_codesniffer": "^2.8"
             },
             "type": "library",
             "autoload": {
@@ -229,26 +288,26 @@
                 }
             ],
             "description": "PHP telegram bot",
-            "homepage": "https://github.com/akalongman/php-telegram-bot",
+            "homepage": "https://github.com/php-telegram-bot/core",
             "keywords": [
                 "api",
                 "bot",
                 "telegram"
             ],
-            "time": "2017-04-09T20:11:46+00:00"
+            "time": "2017-06-25T09:25:56+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
-                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
                 "shasum": ""
             },
             "require": {
@@ -269,7 +328,7 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "~5.3"
+                "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -313,34 +372,79 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-03-13T07:08:03+00:00"
+            "time": "2017-06-19T01:22:40+00:00"
         },
         {
-            "name": "noplanman/telegram-bot-manager",
-            "version": "0.42.0.1",
+            "name": "noplanman/service-webhook-handler",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-telegram-bot/telegram-bot-manager.git",
-                "reference": "d50df8fef83d5ee3796789d643bb7497b713582e"
+                "url": "https://github.com/noplanman/service-webhook-handler.git",
+                "reference": "e8cf0bac7fed798483c637330532971ed225db94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/d50df8fef83d5ee3796789d643bb7497b713582e",
-                "reference": "d50df8fef83d5ee3796789d643bb7497b713582e",
+                "url": "https://api.github.com/repos/noplanman/service-webhook-handler/zipball/e8cf0bac7fed798483c637330532971ed225db94",
+                "reference": "e8cf0bac7fed798483c637330532971ed225db94",
                 "shasum": ""
-            },
-            "require": {
-                "longman/telegram-bot": "^0.42",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "jakub-onderka/php-parallel-lint": "^0.9.2",
-                "phpunit/phpunit": "^6.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "NPM\\TelegramBotManager\\": "src"
+                    "NPM\\ServiceWebhookHandler\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Armando Lüscher",
+                    "email": "armando@noplanman.ch",
+                    "homepage": "https://noplanman.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library to handle Webhooks from various services.",
+            "homepage": "https://github.com/noplanman/service-webhook-handler",
+            "keywords": [
+                "github",
+                "handler",
+                "services",
+                "travis-ci",
+                "webhooks"
+            ],
+            "time": "2017-04-13T10:13:58+00:00"
+        },
+        {
+            "name": "php-telegram-bot/telegram-bot-manager",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-telegram-bot/telegram-bot-manager.git",
+                "reference": "9493b0b0052e1de1459951b882033b11e060c66f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/9493b0b0052e1de1459951b882033b11e060c66f",
+                "reference": "9493b0b0052e1de1459951b882033b11e060c66f",
+                "shasum": ""
+            },
+            "require": {
+                "longman/ip-tools": "^1.2",
+                "longman/telegram-bot": "^0.45",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "phpunit/phpunit": "^6.1",
+                "squizlabs/php_codesniffer": "^2.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TelegramBot\\TelegramBotManager\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -356,13 +460,13 @@
                 }
             ],
             "description": "PHP Telegram Bot Manager",
-            "homepage": "https://github.com/noplanman/php-telegram-bot-manager",
+            "homepage": "https://github.com/php-telegram-bot/telegram-bot-manager",
             "keywords": [
                 "bot",
                 "manager",
                 "telegram"
             ],
-            "time": "2017-04-10T22:42:44+00:00"
+            "time": "2017-07-11T23:11:05+00:00"
         },
         {
             "name": "psr/http-message",

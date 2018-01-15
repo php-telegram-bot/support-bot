@@ -3,9 +3,17 @@
  * To start playing, just save all incoming data to a log file.
  */
 
+use NPM\ServiceWebhookHandler\Handlers\TravisCIHandler;
+
 // Composer autoloader.
 require_once __DIR__ . '/../../vendor/autoload.php';
 (new Dotenv\Dotenv(__DIR__ . '/../..'))->load();
+
+$webhook = new TravisCIHandler();
+if (!$webhook->validate()) {
+    http_response_code(404);
+    die;
+}
 
 $f = fopen(__DIR__ . '/../../logs/' . getenv('SB_BOT_USERNAME') . '_webhook_travis-ci.log', 'ab+');
 fwrite($f, sprintf(
