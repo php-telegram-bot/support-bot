@@ -11,8 +11,9 @@
 namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
-use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Entities\ServerResponse;
+use Longman\TelegramBot\Entities\User;
+use Longman\TelegramBot\Request;
 
 /**
  * New chat members command
@@ -40,31 +41,21 @@ class NewchatmembersCommand extends SystemCommand
      */
     public function execute(): ServerResponse
     {
-        $message = $this->getMessage();
+        $message    = $this->getMessage();
+        $group_name = $message->getChat()->getTitle();
 
-        $chat_id = $message->getChat()->getId();
-		$groupname = $message->getChat()->getTitle();
-        $members = $message->getNewChatMembers();
+        // Only welcome actual users, not bots.
+        $new_members = implode(', ', array_filter(array_map(function (User $member) {
+            return $member->getIsBot() ? null : $member->tryMention();
+        }, $message->getNewChatMembers())));
 
-        $text = 'Hi there!';
+        if (empty($new_members)) {
+            return Request::emptyResponse();
+        }
 
-        if (!$message->botAddedInChat()) {
-            $member_names = [];
-            foreach ($members as $member) {
-                $member_names[] = $member->tryMention();
-            }
-            //$text = 'Hi ' . implode(', ', $member_names) . '!';
-			$text = 'Hello ' . implode(', ', $member_names) . ' in the ' . $groupname . ' Group' . PHP_EOL;
-      $text .= 'Please Read the /Rules of this Chat.':
-			
-			
+        $text = "Welcome {$new_members} to the {$group_name} group\n";
+        $text .= 'Please read the /rules that apply here.';
 
-        $data = [
-            'chat_id' => $chat_id,
-            'text'    => $text,
-        ];
-
-        return Request::sendMessage($data);
-		
+        return $this->replyToChat($text);
     }
 }

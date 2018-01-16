@@ -11,7 +11,6 @@
 namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
-use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Entities\ServerResponse;
 
 /**
@@ -40,44 +39,32 @@ class RulesCommand extends UserCommand
     protected $usage = '/rules';
 
     /**
+     * @var bool
+     */
+    protected $private_only = true;
+
+    /**
      * @inheritdoc
      */
     public function execute(): ServerResponse
     {
-        $message = $this->getMessage();
-
-        $chat_id = $message->getChat()->getId();
-		$user = $message->getFrom()->getUsername();
-        
-        
-		$text = <<<EOT
-    
-    Rules:  `English only | No Spamming or Nonsense Posting | No Bots`
+        $text = <<<EOT
+Rules:  `English only | No Spamming or Nonsense Posting | No Bots`
 
 ¬ **English only**
 Please keep your conversations in english inside this chatroom, otherwise your message will be deleted
 
 ¬ **No Spamming or Nonsense Posting** 
-Don't spam Stickers or send Messages with no useful Content. When repeated you may be kicked or banned
+Don't spam Stickers or send Messages with useless Content. When repeated you may be kicked or banned
 
 ¬ **No Bots**
 Please do not add a Bot inside this Chat without asking the Admins first. Feel free to mention the Bot in a Message
 
-Also keep in mind that this PHP Telegram Bot Support Chat applies only for this PHP Bot Library
+Also keep in mind that this PHP Telegram Bot Support Chat applies only for the PHP Telegram Bot library
 https://github.com/php-telegram-bot/core
-    
 
-    EOT;
-    
-    
-        $data = [
-            'chat_id'      => $chat_id,
-            'parse_mode' => 'MARKDOWN',
-            'text'         => $text,
-          
-            
-        ];
-       
-        return Request::sendMessage($data);
+EOT;
+
+        return $this->replyToChat($text, ['parse_mode' => 'markdown']);
     }
 }
