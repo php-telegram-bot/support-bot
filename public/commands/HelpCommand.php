@@ -1,16 +1,20 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * This file is part of the TelegramBot package.
+ * This file is part of the PHP Telegram Support Bot.
  *
- * (c) Avtandil Kikabidze aka LONGMAN <akalongman@gmail.com>
+ * (c) PHP Telegram Bot Team (https://github.com/php-telegram-bot)
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Longman\TelegramBot\Commands\UserCommands;
+
 use Longman\TelegramBot\Commands\Command;
 use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Request;
+use Longman\TelegramBot\Entities\ServerResponse;
+
 /**
  * User "/help" command
  *
@@ -22,22 +26,25 @@ class HelpCommand extends UserCommand
      * @var string
      */
     protected $name = 'help';
+
     /**
      * @var string
      */
     protected $description = 'Show bot commands help';
+
     /**
      * @var string
      */
     protected $usage = '/help or /help <command>';
+
     /**
      * @var string
      */
-    protected $version = '1.0.0';
+    protected $version = '0.1.0';
     /**
      * @inheritdoc
      */
-    public function execute()
+    public function execute(): ServerResponse
     {
         $message     = $this->getMessage();
         $chat_id     = $message->getChat()->getId();
@@ -61,7 +68,7 @@ EOT;
             'chat_id'    => $chat_id,
             'parse_mode' => 'markdown',
         ];
-        list($all_commands, $user_commands, $admin_commands) = $this->getUserAdminCommands();
+        [$all_commands, $user_commands, $admin_commands] = $this->getUserAdminCommands();
         // If no command parameter is passed, show the list.
         if ($command_str === '') {
             $data['text'] .= '*Commands List*:' . PHP_EOL;
@@ -99,7 +106,7 @@ EOT;
      *
      * @return Command[][]
      */
-    protected function getUserAdminCommands()
+    protected function getUserAdminCommands(): array
     {
         // Only get enabled Admin and User commands that are allowed to be shown.
         /** @var Command[] $commands */
@@ -107,17 +114,20 @@ EOT;
             /** @var Command $command */
             return !$command->isSystemCommand() && $command->showInHelp() && $command->isEnabled();
         });
+        ksort($commands);
+
         $user_commands = array_filter($commands, function ($command) {
             /** @var Command $command */
             return $command->isUserCommand();
         });
+        ksort($user_commands);
+
         $admin_commands = array_filter($commands, function ($command) {
             /** @var Command $command */
             return $command->isAdminCommand();
         });
-        ksort($commands);
-        ksort($user_commands);
         ksort($admin_commands);
+
         return [$commands, $user_commands, $admin_commands];
     }
 }
