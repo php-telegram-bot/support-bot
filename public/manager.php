@@ -1,4 +1,12 @@
-<?php
+<?php declare(strict_types=1);
+/**
+ * This file is part of the PHP Telegram Support Bot.
+ *
+ * (c) PHP Telegram Bot Team (https://github.com/php-telegram-bot)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace TelegramBot\SupportBot;
 

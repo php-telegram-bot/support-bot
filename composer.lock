@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "950ce821a068f78dc24af1899ca45055",
+    "content-hash": "2613799a266cf1bdda102780e036da2d",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -245,16 +245,16 @@
         },
         {
             "name": "longman/telegram-bot",
-            "version": "0.45.0",
+            "version": "0.52.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/core.git",
-                "reference": "6d1075280c5df13d02cca0893433138ea927e6b4"
+                "reference": "f7cac58dcf4efd766f4737f40bba473ced0d4cc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/6d1075280c5df13d02cca0893433138ea927e6b4",
-                "reference": "6d1075280c5df13d02cca0893433138ea927e6b4",
+                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/f7cac58dcf4efd766f4737f40bba473ced0d4cc8",
+                "reference": "f7cac58dcf4efd766f4737f40bba473ced0d4cc8",
                 "shasum": ""
             },
             "require": {
@@ -287,14 +287,14 @@
                     "role": "Developer"
                 }
             ],
-            "description": "PHP telegram bot",
+            "description": "PHP Telegram bot",
             "homepage": "https://github.com/php-telegram-bot/core",
             "keywords": [
                 "api",
                 "bot",
                 "telegram"
             ],
-            "time": "2017-06-25T09:25:56+00:00"
+            "time": "2018-01-07T23:39:21+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -419,27 +419,27 @@
         },
         {
             "name": "php-telegram-bot/telegram-bot-manager",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/telegram-bot-manager.git",
-                "reference": "9493b0b0052e1de1459951b882033b11e060c66f"
+                "reference": "e5b6047cebe6e724eaa539a526f0f4ff0bb44ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/9493b0b0052e1de1459951b882033b11e060c66f",
-                "reference": "9493b0b0052e1de1459951b882033b11e060c66f",
+                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/e5b6047cebe6e724eaa539a526f0f4ff0bb44ddf",
+                "reference": "e5b6047cebe6e724eaa539a526f0f4ff0bb44ddf",
                 "shasum": ""
             },
             "require": {
                 "longman/ip-tools": "^1.2",
-                "longman/telegram-bot": "^0.45",
+                "longman/telegram-bot": "^0.48",
                 "php": "^7.0"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "^0.9.2",
-                "phpunit/phpunit": "^6.1",
-                "squizlabs/php_codesniffer": "^2.9"
+                "phpunit/phpunit": "^6.3",
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -466,7 +466,7 @@
                 "manager",
                 "telegram"
             ],
-            "time": "2017-07-11T23:11:05+00:00"
+            "time": "2017-08-26T18:51:29+00:00"
         },
         {
             "name": "psr/http-message",
@@ -617,11 +617,20 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "0.48",
+            "alias_normalized": "0.48.0.0",
+            "version": "0.52.0.0",
+            "package": "longman/telegram-bot"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">= 7.1"
+    },
     "platform-dev": []
 }
