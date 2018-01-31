@@ -11,6 +11,7 @@
 namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
+use Longman\TelegramBot\Entities\ChatMember;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Entities\User;
 use Longman\TelegramBot\Request;
@@ -33,7 +34,17 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '0.1.0';
+    protected $version = '0.2.0';
+
+    /**
+     * @var int
+     */
+    private $chat_id;
+
+    /**
+     * @var int
+     */
+    private $user_id;
 
     /**
      * @inheritdoc
@@ -41,21 +52,90 @@ class NewchatmembersCommand extends SystemCommand
      */
     public function execute(): ServerResponse
     {
-        $message    = $this->getMessage();
+        $message       = $this->getMessage();
+        $this->chat_id = $message->getChat()->getId();
+        $this->user_id = $message->getFrom()->getId();
+
         $group_name = $message->getChat()->getTitle();
 
-        // Only welcome actual users, not bots.
-        $new_members = implode(', ', array_filter(array_map(function (User $member) {
-            return $member->getIsBot() ? null : $member->tryMention();
-        }, $message->getNewChatMembers())));
+        ['users' => $new_users, 'bots' => $new_bots] = $this->getNewUsersAndBots();
 
-        if (empty($new_members)) {
+        // Kick bots if they weren't added by an admin.
+        $this->kickDisallowedBots($new_bots);
+
+        $new_users_text = implode(', ', array_map(function (User $new_user) {
+            return $new_user->tryMention();
+        }, $new_users));
+
+        if ($new_users_text === '') {
             return Request::emptyResponse();
         }
 
-        $text = "Welcome {$new_members} to the {$group_name} group\n";
+        $text = "Welcome {$new_users_text} to the {$group_name} group\n";
         $text .= 'Please read the /rules that apply here.';
 
         return $this->replyToChat($text);
+    }
+
+    /**
+     * Check if the bot has been added by an admin.
+     *
+     * @return bool
+     */
+    private function isUserAllowedToAddBot(): bool
+    {
+        $chat_member = Request::getChatMember([
+            'chat_id' => $this->chat_id,
+            'user_id' => $this->user_id,
+        ])->getResult();
+
+        if ($chat_member instanceof ChatMember) {
+            return \in_array($chat_member->getStatus(), ['creator', 'administrator'], true);
+        }
+
+        return false;
+    }
+
+    /**
+     * Get an array of all newly added users and bots.
+     *
+     * @return array
+     */
+    private function getNewUsersAndBots(): array
+    {
+        $users = [];
+        $bots  = [];
+
+        foreach ($this->getMessage()->getNewChatMembers() as $member) {
+            if ($member->getIsBot()) {
+                $bots[] = $member;
+                continue;
+            }
+
+            $users[] = $member;
+        }
+
+        return compact('users', 'bots');
+    }
+
+    /**
+     * Kick bots that weren't added by an admin.
+     *
+     * @todo: Maybe notify the admins / user that tried to add the bot(s)?
+     *
+     * @param array $bots
+     */
+    private function kickDisallowedBots(array $bots): void
+    {
+        if (empty($bots) || $this->isUserAllowedToAddBot()) {
+            return;
+        }
+
+        foreach ($bots as $bot) {
+            Request::kickChatMember([
+                'chat_id' => $this->chat_id,
+                'user_id' => $bot->getId(),
+            ]);
+        }
     }
 }
