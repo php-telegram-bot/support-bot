@@ -64,7 +64,7 @@ class NewchatmembersCommand extends SystemCommand
         $this->kickDisallowedBots($new_bots);
 
         $new_users_text = implode(', ', array_map(function (User $new_user) {
-            return $new_user->tryMention();
+            return '<a href="tg://user?id=' . $new_user->getId() . '">' . htmlentities($new_user->getFirstName()) . '</a>';
         }, $new_users));
 
         if ($new_users_text === '') {
@@ -74,7 +74,7 @@ class NewchatmembersCommand extends SystemCommand
         $text = "Welcome {$new_users_text} to the {$group_name} group\n";
         $text .= 'Please read the /rules that apply here.';
 
-        return $this->replyToChat($text);
+        return $this->replyToChat($text, ['parse_mode' => 'HTML']);
     }
 
     /**
