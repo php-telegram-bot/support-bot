@@ -72,6 +72,7 @@ class NewchatmembersCommand extends SystemCommand
         }
 
         $text = "Welcome {$new_users_text} to the {$group_name} group\n";
+        $text .= 'Please remember that this is NOT the Telegram Support Chat.' . PHP_EOL;
         $text .= 'Please read the /rules that apply here.';
 
         return $this->replyToChat($text, ['parse_mode' => 'HTML']);
