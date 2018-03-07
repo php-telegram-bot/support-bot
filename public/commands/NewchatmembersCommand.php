@@ -64,7 +64,7 @@ class NewchatmembersCommand extends SystemCommand
         $this->kickDisallowedBots($new_bots);
 
         $new_users_text = implode(', ', array_map(function (User $new_user) {
-            return '<a href="tg://user?id=' . $new_user->getId() . '">' . htmlentities($new_user->getFirstName()) . '</a>';
+            return '<a href="tg://user?id=' . $new_user->getId() . '">' . filter_var($new_user->getFirstName(), FILTER_SANITIZE_SPECIAL_CHARS) . '</a>';
         }, $new_users));
 
         if ($new_users_text === '') {
