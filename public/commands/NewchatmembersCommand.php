@@ -11,11 +11,11 @@
 namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
-use Longman\TelegramBot\DB;
 use Longman\TelegramBot\Entities\ChatMember;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Entities\User;
 use Longman\TelegramBot\Request;
+use TelegramBot\SupportBot\Helpers;
 
 /**
  * New chat members command
@@ -35,7 +35,7 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '0.3.0';
+    protected $version = '0.4.0';
 
     /**
      * @var int
@@ -105,11 +105,8 @@ class NewchatmembersCommand extends SystemCommand
         $chat_id        = $welcome_message->getChat()->getId();
 
         if ($new_message_id && $chat_id) {
-            if ($message_id = $this->getSimpleOption('welcome_message_id')) {
-                Request::deleteMessage(compact('chat_id', 'message_id'));
-            }
-
-            $this->setSimpleOption('welcome_message_id', $new_message_id);
+            Helpers::saveLatestWelcomeMessage($new_message_id);
+            Helpers::deleteOldWelcomeMessages();
         }
 
         return $welcome_message_sent;
@@ -175,45 +172,5 @@ class NewchatmembersCommand extends SystemCommand
                 'user_id' => $bot->getId(),
             ]);
         }
-    }
-
-    /**
-     * Get a simple option value.
-     *
-     * @todo: Move into core!
-     *
-     * @param string $name
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    private function getSimpleOption($name, $default = false)
-    {
-        return DB::getPdo()->query("
-            SELECT `value`
-            FROM `simple_options`
-            WHERE `name` = '{$name}'
-        ")->fetchColumn() ?? $default;
-    }
-
-    /**
-     * Set a simple option value.
-     *
-     * @todo: Move into core!
-     *
-     * @param string $name
-     * @param mixed  $value
-     *
-     * @return bool
-     */
-    private function setSimpleOption($name, $value): bool
-    {
-        return DB::getPdo()->prepare("
-            INSERT INTO `simple_options`
-            (`name`, `value`) VALUES (?, ?)
-            ON DUPLICATE KEY UPDATE
-            `name` = VALUES(`name`),
-            `value` = VALUES(`value`)
-        ")->execute([$name, $value]);
     }
 }

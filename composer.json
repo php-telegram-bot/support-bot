@@ -22,5 +22,10 @@
         "longman/telegram-bot": "0.52.0 as 0.48",
         "noplanman/service-webhook-handler": "^0.1",
         "vlucas/phpdotenv": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "TelegramBot\\SupportBot\\": "src"
+        }
     }
 }
