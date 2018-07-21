@@ -33,7 +33,7 @@ class Helpers
             SELECT `value`
             FROM `simple_options`
             WHERE `name` = '{$name}'
-        ")->fetchColumn(), true) ?? $default;
+        ")->fetchColumn() ?: '', true) ?? $default;
     }
 
     /**
