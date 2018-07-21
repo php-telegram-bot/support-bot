@@ -18,10 +18,9 @@
     ],
     "require": {
         "php": ">= 7.1",
-        "php-telegram-bot/telegram-bot-manager": "^1.2",
-        "longman/telegram-bot": "0.52.0 as 0.48",
+        "php-telegram-bot/telegram-bot-manager": "^1.3",
         "noplanman/service-webhook-handler": "^0.1",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.5"
     },
     "autoload": {
         "psr-4": {
