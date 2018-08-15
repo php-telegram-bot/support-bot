@@ -92,7 +92,7 @@ class NewchatmembersCommand extends SystemCommand
 
         $text = "Welcome {$new_users_text} to the <b>{$this->group_name}</b> group\n";
         $text .= 'Please remember that this is <b>NOT</b> the Telegram Support Chat.' . PHP_EOL;
-        $text .= 'Read the <a href="https://telegram.me/PHP_Telegram_Support_Bot?start=">Rules</a> that apply here.';
+        $text .= 'Read the <a href="https://t.me/PHP_Telegram_Bot_Support/5526">Rules</a> that apply here.';
 
         $welcome_message_sent = $this->replyToChat($text, ['parse_mode' => 'HTML', 'disable_web_page_preview' => true]);
         if (!$welcome_message_sent->isOk()) {
