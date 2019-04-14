@@ -16,7 +16,7 @@ use NPM\ServiceWebhookHandler\Handlers\TravisCIHandler;
 
 // Composer autoloader.
 require_once __DIR__ . '/../../vendor/autoload.php';
-(new Dotenv\Dotenv(__DIR__ . '/../..'))->load();
+Dotenv\Dotenv::create(__DIR__ . '/../..')->load();
 
 $webhook = new TravisCIHandler();
 if (!$webhook->validate()) {

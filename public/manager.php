@@ -17,7 +17,7 @@ use TelegramBot\TelegramBotManager\BotManager;
 
 // Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
-(new Dotenv(__DIR__ . '/..'))->load();
+Dotenv::create(__DIR__ . '/..')->load();
 
 try {
     // Vitals!

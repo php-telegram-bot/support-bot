@@ -16,7 +16,7 @@ use NPM\ServiceWebhookHandler\Handlers\GitHubHandler;
 
 // Composer autoloader.
 require_once __DIR__ . '/../../vendor/autoload.php';
-(new Dotenv\Dotenv(__DIR__ . '/../..'))->load();
+Dotenv\Dotenv::create(__DIR__ . '/../..')->load();
 
 $webhook = new GitHubHandler(getenv('SB_WEBHOOK_SECRET_GITHUB'));
 if (!$webhook->validate()) {
