@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 /**
  * This file is part of the PHP Telegram Support Bot.
  *
@@ -8,11 +9,8 @@
  * file that was distributed with this source code.
  */
 
-/**
- * To start playing, just save all incoming data to a log file.
- */
-
 use NPM\ServiceWebhookHandler\Handlers\GitHubHandler;
+use TelegramBot\SupportBot\Webhooks\Utils;
 
 // Composer autoloader.
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -24,13 +22,5 @@ if (!$webhook->validate()) {
     die;
 }
 
-$f = fopen(__DIR__ . '/../../logs/' . getenv('SB_BOT_USERNAME') . '_webhook_github.log', 'ab+');
-fwrite($f, sprintf(
-    "%s\ninput:  %s\nGET:    %s\nPOST:   %s\nSERVER: %s\n\n",
-    date('Y-m-d H:i:s'),
-    file_get_contents('php://input'),
-    json_encode($_GET),
-    json_encode($_POST),
-    json_encode($_SERVER)
-));
-fclose($f);
+// Save all incoming data to a log file for future reference.
+Utils::logWebhookData(__DIR__ . '/../../logs/' . getenv('SB_BOT_USERNAME') . '_webhook_github.log');
