@@ -23,4 +23,4 @@ if (!$webhook->validate()) {
 }
 
 // Save all incoming data to a log file for future reference.
-Utils::logWebhookData(__DIR__ . '/../../logs/' . getenv('SB_BOT_USERNAME') . '_webhook_travis-ci.log');
+Utils::logWebhookData(getenv('TG_LOGS_DIR') . '/' . getenv('TG_BOT_USERNAME') . '_webhook_travis-ci.log');
