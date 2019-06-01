@@ -63,8 +63,9 @@ switch ($webhook->getEvent()) {
 function handleRelease($data) {
     $repo    = $data['repository'];
     $release = $data['release'];
+    $action  = $data['action'];
 
-    if (!$release['draft'] && !$release['prerelease']) {
+    if ($action === 'published' && !$release['draft'] && !$release['prerelease']) {
         $author     = $release['author']['login'];
         $author_url = $release['author']['html_url'];
         $tag        = $release['tag_name'];
