@@ -9,8 +9,13 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Deprecated
 ### Removed
 ### Fixed
-- Only post release message when a new release is actually "published".
 ### Security
+
+## [0.2.0] - 2019-06-01
+### Changed
+- Bumped Manager to 1.4
+### Fixed
+- Only post release message when a new release is actually "published". (#25)
 
 ## [0.1.0] - 2019-04-15
 ### Added
@@ -21,3 +26,4 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.2.0]: https://github.com/php-telegram-bot/support-bot/compare/0.1.0...0.2.0

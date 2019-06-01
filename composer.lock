@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "279b12c0bc6cb135256f4c736d02134e",
+    "content-hash": "e0c27ed3867ef2a0d3b9cfdd4178d7d9",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -404,16 +404,16 @@
         },
         {
             "name": "longman/telegram-bot",
-            "version": "0.54.1",
+            "version": "0.57.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/core.git",
-                "reference": "7701428356a70b0b5d88404248a060ca1c43c6ba"
+                "reference": "f2fe6e322d961153b82c39f699edbedb5311d328"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/7701428356a70b0b5d88404248a060ca1c43c6ba",
-                "reference": "7701428356a70b0b5d88404248a060ca1c43c6ba",
+                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/f2fe6e322d961153b82c39f699edbedb5311d328",
+                "reference": "f2fe6e322d961153b82c39f699edbedb5311d328",
                 "shasum": ""
             },
             "require": {
@@ -422,12 +422,12 @@
                 "ext-mbstring": "*",
                 "ext-pdo": "*",
                 "guzzlehttp/guzzle": "^6.3",
-                "monolog/monolog": "^1.23",
+                "monolog/monolog": "^1.24",
                 "php": "^5.5|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8|^5.7|^6.5|^7.4",
-                "squizlabs/php_codesniffer": "^3.3"
+                "phpunit/phpunit": "^4.8|^5.7|^6.5|^7.5|^8.1",
+                "squizlabs/php_codesniffer": "^3.4"
             },
             "type": "library",
             "autoload": {
@@ -459,7 +459,7 @@
                 "bot",
                 "telegram"
             ],
-            "time": "2018-10-23T16:50:28+00:00"
+            "time": "2019-06-01T09:42:08+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1056,27 +1056,27 @@
         },
         {
             "name": "php-telegram-bot/telegram-bot-manager",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/telegram-bot-manager.git",
-                "reference": "62333217bdd00fe140ca33ef5a45c16139bc675a"
+                "reference": "6afdb0b167a85d3c3a2c34192bf3a6e614ef2b6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/62333217bdd00fe140ca33ef5a45c16139bc675a",
-                "reference": "62333217bdd00fe140ca33ef5a45c16139bc675a",
+                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/6afdb0b167a85d3c3a2c34192bf3a6e614ef2b6f",
+                "reference": "6afdb0b167a85d3c3a2c34192bf3a6e614ef2b6f",
                 "shasum": ""
             },
             "require": {
                 "longman/ip-tools": "^1.2",
-                "longman/telegram-bot": "^0.54",
-                "php": "^7.0"
+                "longman/telegram-bot": "^0.57",
+                "php": "^7.1"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "^1.0",
-                "phpunit/phpunit": "^6.5|^7.2",
-                "squizlabs/php_codesniffer": "^3.3"
+                "phpunit/phpunit": "^7.5|^8.1",
+                "squizlabs/php_codesniffer": "^3.4"
             },
             "type": "library",
             "autoload": {
@@ -1103,7 +1103,7 @@
                 "manager",
                 "telegram"
             ],
-            "time": "2018-07-21T01:27:56+00:00"
+            "time": "2019-06-01T10:27:19+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -1340,16 +1340,16 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.2.5",
+            "version": "v4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "3896e5a7d06fd15fa4947694c8dcdd371ff147d1"
+                "reference": "914e0edcb7cd0c9f494bc023b1d47534f4542332"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/3896e5a7d06fd15fa4947694c8dcdd371ff147d1",
-                "reference": "3896e5a7d06fd15fa4947694c8dcdd371ff147d1",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/914e0edcb7cd0c9f494bc023b1d47534f4542332",
+                "reference": "914e0edcb7cd0c9f494bc023b1d47534f4542332",
                 "shasum": ""
             },
             "require": {
@@ -1358,7 +1358,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -1390,7 +1390,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-05-10T05:38:46+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
