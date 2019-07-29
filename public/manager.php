@@ -41,7 +41,7 @@ try {
     }
 
     // Optional extras.
-    $extras = ['admins', 'botan', 'commands', 'cron', 'limiter', 'logging', 'paths', 'valid_ips', 'webhook'];
+    $extras = ['admins', 'commands', 'cron', 'limiter', 'logging', 'paths', 'valid_ips', 'webhook'];
     foreach ($extras as $extra) {
         if ($param = getenv('TG_' . strtoupper($extra))) {
             $params[$extra] = json_decode($param, true);

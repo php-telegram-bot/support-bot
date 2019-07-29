@@ -19,9 +19,9 @@
     "require": {
         "php": ">= 7.1",
         "ext-json": "*",
-        "php-telegram-bot/telegram-bot-manager": "^1.4",
+        "php-telegram-bot/telegram-bot-manager": "^1.5",
         "noplanman/service-webhook-handler": "^0.2",
-        "vlucas/phpdotenv": "^3.3",
+        "vlucas/phpdotenv": "^3.4",
         "php-http/guzzle6-adapter": "^1.1",
         "knplabs/github-api": "^2.11",
         "elvanto/litemoji": "^1.4"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0c27ed3867ef2a0d3b9cfdd4178d7d9",
+    "content-hash": "2d13f7bf1d2d12269e85c2795a5f642b",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -214,33 +214,37 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.5.2",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115"
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
                 "psr/http-message": "~1.0",
-                "ralouphie/getallheaders": "^2.0.5"
+                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
+                "ext-zlib": "*",
                 "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            },
+            "suggest": {
+                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -277,7 +281,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-12-04T20:46:45+00:00"
+            "time": "2019-07-01T23:21:34+00:00"
         },
         {
             "name": "knplabs/github-api",
@@ -404,16 +408,16 @@
         },
         {
             "name": "longman/telegram-bot",
-            "version": "0.57.0",
+            "version": "0.59.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/core.git",
-                "reference": "f2fe6e322d961153b82c39f699edbedb5311d328"
+                "reference": "f55fd1c2eb75b4f8e9ab468066ce96acba9e6b68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/f2fe6e322d961153b82c39f699edbedb5311d328",
-                "reference": "f2fe6e322d961153b82c39f699edbedb5311d328",
+                "url": "https://api.github.com/repos/php-telegram-bot/core/zipball/f55fd1c2eb75b4f8e9ab468066ce96acba9e6b68",
+                "reference": "f55fd1c2eb75b4f8e9ab468066ce96acba9e6b68",
                 "shasum": ""
             },
             "require": {
@@ -423,7 +427,8 @@
                 "ext-pdo": "*",
                 "guzzlehttp/guzzle": "^6.3",
                 "monolog/monolog": "^1.24",
-                "php": "^5.5|^7.0"
+                "php": "^5.5|^7.0",
+                "psr/log": "^1.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8|^5.7|^6.5|^7.5|^8.1",
@@ -459,7 +464,7 @@
                 "bot",
                 "telegram"
             ],
-            "time": "2019-06-01T09:42:08+00:00"
+            "time": "2019-07-18T15:02:31+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -704,28 +709,29 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "684855f2c2e9d0a61868b8f8d6bd0295c8a4b651"
+                "reference": "e822f86a6983790aa17ab13aa7e69631e86806b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/684855f2c2e9d0a61868b8f8d6bd0295c8a4b651",
-                "reference": "684855f2c2e9d0a61868b8f8d6bd0295c8a4b651",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/e822f86a6983790aa17ab13aa7e69631e86806b6",
+                "reference": "e822f86a6983790aa17ab13aa7e69631e86806b6",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5 || ^7.0"
+                "php": "^7.1"
             },
             "conflict": {
                 "nyholm/psr7": "<1.0"
             },
             "require-dev": {
+                "akeneo/phpspec-skip-example-extension": "^4.0",
                 "php-http/httplug": "^1.0 || ^2.0",
                 "php-http/message-factory": "^1.0",
-                "phpspec/phpspec": "^2.4",
+                "phpspec/phpspec": "^5.1",
                 "puli/composer-plugin": "1.0.0-beta10"
             },
             "suggest": {
@@ -735,7 +741,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -764,7 +770,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2019-02-23T07:42:53+00:00"
+            "time": "2019-06-30T09:04:27+00:00"
         },
         {
             "name": "php-http/guzzle6-adapter",
@@ -1056,26 +1062,27 @@
         },
         {
             "name": "php-telegram-bot/telegram-bot-manager",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-telegram-bot/telegram-bot-manager.git",
-                "reference": "6afdb0b167a85d3c3a2c34192bf3a6e614ef2b6f"
+                "reference": "35ca6cf6d17b752416610dd5d67cdd222dab71f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/6afdb0b167a85d3c3a2c34192bf3a6e614ef2b6f",
-                "reference": "6afdb0b167a85d3c3a2c34192bf3a6e614ef2b6f",
+                "url": "https://api.github.com/repos/php-telegram-bot/telegram-bot-manager/zipball/35ca6cf6d17b752416610dd5d67cdd222dab71f2",
+                "reference": "35ca6cf6d17b752416610dd5d67cdd222dab71f2",
                 "shasum": ""
             },
             "require": {
                 "longman/ip-tools": "^1.2",
-                "longman/telegram-bot": "^0.57",
-                "php": "^7.1"
+                "longman/telegram-bot": "^0.59",
+                "php": "^7.1",
+                "psr/log": "^1.1"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "^1.0",
-                "phpunit/phpunit": "^7.5|^8.1",
+                "phpunit/phpunit": "^7.5|^8.2",
                 "squizlabs/php_codesniffer": "^3.4"
             },
             "type": "library",
@@ -1091,9 +1098,9 @@
             "authors": [
                 {
                     "name": "Armando Lüscher",
+                    "role": "Developer",
                     "email": "armando@noplanman.ch",
-                    "homepage": "https://noplanman.ch",
-                    "role": "Developer"
+                    "homepage": "https://noplanman.ch"
                 }
             ],
             "description": "PHP Telegram Bot Manager",
@@ -1103,7 +1110,7 @@
                 "manager",
                 "telegram"
             ],
-            "time": "2019-06-01T10:27:19+00:00"
+            "time": "2019-07-29T13:22:03+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -1300,24 +1307,24 @@
         },
         {
             "name": "ralouphie/getallheaders",
-            "version": "2.0.5",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.0",
-                "satooshi/php-coveralls": ">=1.0"
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
             },
             "type": "library",
             "autoload": {
@@ -1336,20 +1343,20 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "time": "2016-02-11T07:05:27+00:00"
+            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.3.0",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "914e0edcb7cd0c9f494bc023b1d47534f4542332"
+                "reference": "40762ead607c8f792ee4516881369ffa553fee6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/914e0edcb7cd0c9f494bc023b1d47534f4542332",
-                "reference": "914e0edcb7cd0c9f494bc023b1d47534f4542332",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/40762ead607c8f792ee4516881369ffa553fee6f",
+                "reference": "40762ead607c8f792ee4516881369ffa553fee6f",
                 "shasum": ""
             },
             "require": {
@@ -1390,7 +1397,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-05-10T05:38:46+00:00"
+            "time": "2019-06-13T11:01:17+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1452,16 +1459,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v3.3.3",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "dbcc609971dd9b55f48b8008b553d79fd372ddde"
+                "reference": "5084b23845c24dbff8ac6c204290c341e4776c92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/dbcc609971dd9b55f48b8008b553d79fd372ddde",
-                "reference": "dbcc609971dd9b55f48b8008b553d79fd372ddde",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/5084b23845c24dbff8ac6c204290c341e4776c92",
+                "reference": "5084b23845c24dbff8ac6c204290c341e4776c92",
                 "shasum": ""
             },
             "require": {
@@ -1475,7 +1482,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -1500,7 +1507,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2019-03-06T09:39:45+00:00"
+            "time": "2019-06-15T22:40:20+00:00"
         }
     ],
     "packages-dev": [],
