@@ -16,6 +16,9 @@ use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Telegram;
 use Longman\TelegramBot\TelegramLog;
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use NPM\ServiceWebhookHandler\Handlers\GitHubHandler;
 use TelegramBot\SupportBot\Webhooks\Utils;
 
@@ -142,7 +145,11 @@ function parseReleaseBody($body, $user, $repo) {
 function sendTelegramMessage($chat_id, $text) {
     try {
         new Telegram(getenv('TG_API_KEY'));
-        TelegramLog::initErrorLog(getenv('TG_LOGS_DIR') . '/error.releases.log');
+
+        TelegramLog::initialize(new Logger('telegram_bot_releases', [
+            (new StreamHandler(getenv('TG_LOGS_DIR') . '/releases.debug.log', Logger::DEBUG))->setFormatter(new LineFormatter(null, null, true)),
+            (new StreamHandler(getenv('TG_LOGS_DIR') . '/releases.error.log', Logger::ERROR))->setFormatter(new LineFormatter(null, null, true)),
+        ]));
 
         $parse_mode = 'markdown';
 
