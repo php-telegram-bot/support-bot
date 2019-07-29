@@ -18,6 +18,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\NullLogger;
 use TelegramBot\TelegramBotManager\BotManager;
+use Throwable;
 
 // Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -58,7 +59,7 @@ try {
     $bot->run();
 } catch (TelegramLogException $e) {
     // Silence... beautiful silence =)
-} catch (\Throwable $e) {
+} catch (Throwable $e) {
     TelegramLog::error($e->getMessage());
 }
 
@@ -66,7 +67,7 @@ try {
  * Initialise the logging.
  *
  */
-function initLogging()
+function initLogging(): void
 {
     // Logging.
     $logging_paths = json_decode(getenv('TG_LOGGING'), true) ?? [];

@@ -12,6 +12,7 @@ namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
+use Longman\TelegramBot\Exception\TelegramException;
 
 /**
  * System "/start" command
@@ -45,7 +46,7 @@ class StartCommand extends SystemCommand
 
     /**
      * @inheritdoc
-     * @throws \Longman\TelegramBot\Exception\TelegramException
+     * @throws TelegramException
      */
     public function execute(): ServerResponse
     {

@@ -27,9 +27,19 @@
         "elvanto/litemoji": "^1.4",
         "monolog/monolog": "^1.24"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4",
+        "jakub-onderka/php-parallel-lint": "^1.0"
+    },
     "autoload": {
         "psr-4": {
             "TelegramBot\\SupportBot\\": "src"
         }
+    },
+    "scripts": {
+        "check-code": [
+            "vendor/bin/parallel-lint . --exclude vendor",
+            "vendor/bin/phpcs"
+        ]
     }
 }

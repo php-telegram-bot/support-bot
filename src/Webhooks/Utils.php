@@ -11,13 +11,15 @@
 
 namespace TelegramBot\SupportBot\Webhooks;
 
-class Utils {
+class Utils
+{
     /**
      * Log the incoming webhook data.
      *
      * @param string $path
      */
-    public static function logWebhookData($path): void {
+    public static function logWebhookData($path): void
+    {
         $f = fopen($path, 'ab+');
         fwrite($f, sprintf(
             "%s\ninput:  %s\nGET:    %s\nPOST:   %s\nSERVER: %s\n\n",

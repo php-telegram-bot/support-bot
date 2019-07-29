@@ -14,6 +14,7 @@ use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Entities\ChatMember;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Entities\User;
+use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
 use TelegramBot\SupportBot\Helpers;
 
@@ -54,7 +55,7 @@ class NewchatmembersCommand extends SystemCommand
 
     /**
      * @inheritdoc
-     * @throws \Longman\TelegramBot\Exception\TelegramException
+     * @throws TelegramException
      */
     public function execute(): ServerResponse
     {
@@ -78,7 +79,7 @@ class NewchatmembersCommand extends SystemCommand
      * @param array $new_users
      *
      * @return ServerResponse
-     * @throws \Longman\TelegramBot\Exception\TelegramException
+     * @throws TelegramException
      */
     private function refreshWelcomeMessage(array $new_users): ServerResponse
     {
@@ -86,7 +87,7 @@ class NewchatmembersCommand extends SystemCommand
             return Request::emptyResponse();
         }
 
-        $new_users_text = implode(', ', array_map(function (User $new_user) {
+        $new_users_text = implode(', ', array_map(static function (User $new_user) {
             return '<a href="tg://user?id=' . $new_user->getId() . '">' . filter_var($new_user->getFirstName(), FILTER_SANITIZE_SPECIAL_CHARS) . '</a>';
         }, $new_users));
 
@@ -125,7 +126,7 @@ class NewchatmembersCommand extends SystemCommand
         ])->getResult();
 
         if ($chat_member instanceof ChatMember) {
-            return \in_array($chat_member->getStatus(), ['creator', 'administrator'], true);
+            return in_array($chat_member->getStatus(), ['creator', 'administrator'], true);
         }
 
         return false;
