@@ -6,6 +6,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 ### Changed
+- Bumped Manager to 1.5.
 ### Deprecated
 ### Removed
 ### Fixed
