@@ -17,6 +17,8 @@ use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Telegram;
 use Longman\TelegramBot\TelegramLog;
+use MatthiasMullie\Scrapbook\Adapters\MySQL;
+use MatthiasMullie\Scrapbook\Psr6\Pool;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -108,6 +110,10 @@ function parseReleaseBody($body, $user, $repo): string
     }, $body);
 
     $github_client = new Client();
+    $github_client->addCache(new Pool(new MySQL(
+        new PDO('mysql:dbname=' . getenv('TG_DB_DATABASE') . ';host=' . getenv('TG_DB_HOST'), getenv('TG_DB_USER'), getenv('TG_DB_PASSWORD'))
+    )));
+
     // Replace any ID links with the corresponding issue or pull request link.
     $body = preg_replace_callback('~(?:(?<user>[0-9a-z\-]*)/(?<repo>[0-9a-z\-]*))?#(?<id>\d*)~i', static function ($matches) use ($github_client, $user, $repo) {
         $text = $matches[0];
@@ -118,7 +124,7 @@ function parseReleaseBody($body, $user, $repo): string
         // Check if this ID is an issue.
         try {
             /** @var Issue $issue */
-            $issue = $github_client->api('issue')->show($user, $repo, $id);
+            $issue = $github_client->issue()->show($user, $repo, $id);
             return "[{$text}]({$issue['html_url']})";
         } catch (Throwable $e) {
             // Silently ignore.
@@ -127,7 +133,7 @@ function parseReleaseBody($body, $user, $repo): string
         // Check if this ID is a pull request.
         try {
             /** @var PullRequest $pr */
-            $pr = $github_client->api('pull_request')->show($user, $repo, $id);
+            $pr = $github_client->pr()->show($user, $repo, $id);
             return "[{$text}]({$pr['html_url']})";
         } catch (Throwable $e) {
             // Silently ignore.
