@@ -14,6 +14,7 @@ use Github\Api\PullRequest;
 use Github\Client;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
+use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Telegram;
 use Longman\TelegramBot\TelegramLog;
 use Monolog\Formatter\LineFormatter;
@@ -63,7 +64,8 @@ switch ($webhook->getEvent()) {
  *
  * @param array $data
  */
-function handleRelease($data) {
+function handleRelease(array $data): void
+{
     $repo    = $data['repository'];
     $release = $data['release'];
     $action  = $data['action'];
@@ -96,7 +98,8 @@ function handleRelease($data) {
  *
  * @return string
  */
-function parseReleaseBody($body, $user, $repo) {
+function parseReleaseBody($body, $user, $repo): string
+{
     // Replace headers with bold text.
     $body = preg_replace_callback('~### (?<header>.*)~', static function ($matches) {
         return "*{$matches['header']}*";
@@ -142,7 +145,8 @@ function parseReleaseBody($body, $user, $repo) {
  *
  * @return ServerResponse|null
  */
-function sendTelegramMessage($chat_id, $text) {
+function sendTelegramMessage($chat_id, $text): ?ServerResponse
+{
     try {
         new Telegram(getenv('TG_API_KEY'));
 
@@ -153,7 +157,7 @@ function sendTelegramMessage($chat_id, $text) {
 
         $parse_mode = 'markdown';
 
-        return Longman\TelegramBot\Request::sendMessage(compact('chat_id', 'text', 'parse_mode'));
+        return Request::sendMessage(compact('chat_id', 'text', 'parse_mode'));
     } catch (TelegramException $e) {
         TelegramLog::error($e->getMessage());
     } catch (Throwable $e) {

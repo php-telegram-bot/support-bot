@@ -13,6 +13,7 @@ namespace Longman\TelegramBot\Commands\UserCommands;
 use Longman\TelegramBot\Commands\Command;
 use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
+use Longman\TelegramBot\Exception\TelegramException;
 
 /**
  * User "/help" command
@@ -79,7 +80,7 @@ EOT;
             foreach ($user_commands as $user_command) {
                 $text .= '/' . $user_command->getName() . ' - ' . $user_command->getDescription() . PHP_EOL;
             }
-            if ($safe_to_show && \count($admin_commands) > 0) {
+            if ($safe_to_show && count($admin_commands) > 0) {
                 $text .= PHP_EOL . '*Admin Commands List*:' . PHP_EOL;
                 foreach ($admin_commands as $admin_command) {
                     $text .= '/' . $admin_command->getName() . ' - ' . $admin_command->getDescription() . PHP_EOL;
@@ -112,24 +113,25 @@ EOT;
      * Get all available User and Admin commands to display in the help list.
      *
      * @return Command[][]
+     * @throws TelegramException
      */
     protected function getUserAdminCommands(): array
     {
         // Only get enabled Admin and User commands that are allowed to be shown.
         /** @var Command[] $commands */
-        $commands = array_filter($this->telegram->getCommandsList(), function ($command) {
+        $commands = array_filter($this->telegram->getCommandsList(), static function ($command) {
             /** @var Command $command */
             return !$command->isSystemCommand() && $command->showInHelp() && $command->isEnabled();
         });
         ksort($commands);
 
-        $user_commands = array_filter($commands, function ($command) {
+        $user_commands = array_filter($commands, static function ($command) {
             /** @var Command $command */
             return $command->isUserCommand();
         });
         ksort($user_commands);
 
-        $admin_commands = array_filter($commands, function ($command) {
+        $admin_commands = array_filter($commands, static function ($command) {
             /** @var Command $command */
             return $command->isAdminCommand();
         });
