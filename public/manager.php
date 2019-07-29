@@ -13,6 +13,10 @@ namespace TelegramBot\SupportBot;
 use Dotenv\Dotenv;
 use Longman\TelegramBot\Exception\TelegramLogException;
 use Longman\TelegramBot\TelegramLog;
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Psr\Log\NullLogger;
 use TelegramBot\TelegramBotManager\BotManager;
 
 // Composer autoloader.
@@ -41,12 +45,14 @@ try {
     }
 
     // Optional extras.
-    $extras = ['admins', 'commands', 'cron', 'limiter', 'logging', 'paths', 'valid_ips', 'webhook'];
+    $extras = ['admins', 'commands', 'cron', 'limiter', 'paths', 'valid_ips', 'webhook'];
     foreach ($extras as $extra) {
         if ($param = getenv('TG_' . strtoupper($extra))) {
             $params[$extra] = json_decode($param, true);
         }
     }
+
+    initLogging();
 
     $bot = new BotManager($params);
     $bot->run();
@@ -54,4 +60,32 @@ try {
     // Silence... beautiful silence =)
 } catch (\Throwable $e) {
     TelegramLog::error($e->getMessage());
+}
+
+/**
+ * Initialise the logging.
+ *
+ */
+function initLogging()
+{
+    // Logging.
+    $logging_paths = json_decode(getenv('TG_LOGGING'), true) ?? [];
+
+    $debug_log  = $logging_paths['debug'] ?? null;
+    $error_log  = $logging_paths['error'] ?? null;
+    $update_log = $logging_paths['update'] ?? null;
+
+    // Main logger that handles all 'debug' and 'error' logs.
+    $logger = ($debug_log || $error_log) ? new Logger('telegram_bot') : new NullLogger();
+    $debug_log && $logger->pushHandler((new StreamHandler($debug_log, Logger::DEBUG))->setFormatter(new LineFormatter(null, null, true)));
+    $error_log && $logger->pushHandler((new StreamHandler($error_log, Logger::ERROR))->setFormatter(new LineFormatter(null, null, true)));
+
+    // Updates logger for raw updates.
+    $update_logger = new NullLogger();
+    if ($update_log) {
+        $update_logger = new Logger('telegram_bot_updates');
+        $update_logger->pushHandler((new StreamHandler($update_log, Logger::INFO))->setFormatter(new LineFormatter('%message%' . PHP_EOL)));
+    }
+
+    TelegramLog::initialize($logger, $update_logger);
 }
