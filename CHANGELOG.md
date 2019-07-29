@@ -7,6 +7,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Added
 ### Changed
 - Bumped Manager to 1.5.
+- Logging is now decoupled with custom Monolog logger.
 ### Deprecated
 ### Removed
 ### Fixed
