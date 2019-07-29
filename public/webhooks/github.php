@@ -53,10 +53,12 @@ if (!in_array($webhook->getEvent(), $allowed_repos_events[$repo['full_name']] ??
 }
 
 // Handle event.
-switch ($webhook->getEvent()) {
-    case 'release':
-        handleRelease($data);
-        break;
+if ($webhook->getEvent() === 'release') {
+    handleRelease($data);
+
+    if ($repo === 'php-telegram-bot/support-bot' && getenv('TG_AUTOUPDATE') === '1') {
+        pullLatestAndUpdate();
+    }
 }
 
 /**
@@ -165,4 +167,17 @@ function sendTelegramMessage($chat_id, $text): ?ServerResponse
     }
 
     return null;
+}
+
+/**
+ * Pull the latest code from the repository and install with composer.
+ */
+function pullLatestAndUpdate(): void
+{
+    exec('sudo -u www-data /usr/bin/git stash');
+    exec('sudo -u www-data /usr/bin/git fetch');
+    exec('sudo -u www-data /usr/bin/git reset --hard');
+    exec('sudo -u www-data /usr/bin/git rebase');
+    exec('sudo -u www-data /usr/bin/git pull');
+    exec('sudo -u www-data /usr/local/bin/composer install --no-dev');
 }
