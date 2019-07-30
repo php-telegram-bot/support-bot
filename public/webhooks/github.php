@@ -58,7 +58,7 @@ if (!in_array($webhook->getEvent(), $allowed_repos_events[$repo['full_name']] ??
 if ($webhook->getEvent() === 'release') {
     handleRelease($data);
 
-    if ($repo === 'php-telegram-bot/support-bot' && getenv('TG_AUTOUPDATE') === '1') {
+    if ($repo['full_name'] === 'php-telegram-bot/support-bot' && getenv('TG_AUTOUPDATE') === '1') {
         pullLatestAndUpdate();
     }
 }
@@ -106,7 +106,8 @@ function parseReleaseBody($body, $user, $repo): string
 {
     // Replace headers with bold text.
     $body = preg_replace_callback('~### (?<header>.*)~', static function ($matches) {
-        return "*{$matches['header']}*";
+        $header = trim($matches['header']);
+        return "*{$header}*";
     }, $body);
 
     $github_client = new Client();

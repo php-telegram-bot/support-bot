@@ -11,6 +11,7 @@
 namespace TelegramBot\SupportBot;
 
 use Dotenv\Dotenv;
+use Exception;
 use Longman\TelegramBot\Exception\TelegramLogException;
 use Longman\TelegramBot\TelegramLog;
 use Monolog\Formatter\LineFormatter;
@@ -66,6 +67,7 @@ try {
 /**
  * Initialise the logging.
  *
+ * @throws Exception
  */
 function initLogging(): void
 {

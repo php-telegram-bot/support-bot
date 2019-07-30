@@ -5,16 +5,20 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
-- Code checkers to ensure coding standard.
-- When releasing a new version of the Support Bot, automatically fetch the latest code and install with composer.
-- MySQL cache for GitHub client.
 ### Changed
-- Bumped Manager to 1.5.
-- Logging is now decoupled with custom Monolog logger.
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [0.3.0] - 2019-07-30
+### Added
+- Code checkers to ensure coding standard. (#30)
+- When releasing a new version of the Support Bot, automatically fetch the latest code and install with composer. (#31)
+- MySQL cache for GitHub client. (#32)
+### Changed
+- Bumped Manager to 1.5. (#27)
+- Logging is now decoupled with custom Monolog logger. (#28, #29)
 
 ## [0.2.0] - 2019-06-01
 ### Changed
@@ -31,4 +35,5 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.3.0]: https://github.com/php-telegram-bot/support-bot/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/php-telegram-bot/support-bot/compare/0.1.0...0.2.0
