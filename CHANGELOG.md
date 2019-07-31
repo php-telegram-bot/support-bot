@@ -9,6 +9,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Deprecated
 ### Removed
 ### Fixed
+- Deprecated system commands are now executed via `GenericmessageCommand`.
 ### Security
 
 ## [0.3.0] - 2019-07-30
