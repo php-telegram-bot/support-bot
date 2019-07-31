@@ -72,18 +72,18 @@ class Helpers
             }
 
             $deletion = Request::deleteMessage(compact('chat_id', 'message_id'));
-            if ($deletion->isOk()) {
-                unset($welcome_message_ids[$key]);
-                continue;
+            if (!$deletion->isOk()) {
+                // Let's just save the error for now if it fails, to see if we can fix this better.
+                TelegramLog::error(sprintf(
+                    'Chat ID: %s, Message ID: %s, Error Code: %s, Error Message: %s',
+                    $chat_id,
+                    $message_id,
+                    $deletion->getErrorCode(),
+                    $deletion->getDescription()
+                ));
             }
 
-            // Let's just save the error for now if it fails, to see if we can fix this better.
-            TelegramLog::error(sprintf(
-                'Message ID: %s, Error Code: %s, Error Message: %s',
-                $message_id,
-                $deletion->getErrorCode(),
-                $deletion->getDescription()
-            ));
+            unset($welcome_message_ids[$key]);
         }
 
         self::setSimpleOption('welcome_message_ids', $welcome_message_ids);
