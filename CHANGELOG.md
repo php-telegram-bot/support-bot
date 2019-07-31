@@ -6,12 +6,16 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 ### Changed
-- Only log a single welcome message deletion failure.
 ### Deprecated
 ### Removed
 ### Fixed
-- Deprecated system commands are now executed via `GenericmessageCommand`.
 ### Security
+
+## [0.4.0] - 2019-08-01
+### Changed
+- Only log a single welcome message deletion failure. (#34)
+### Fixed
+- Deprecated system commands are now executed via `GenericmessageCommand`. (#33)
 
 ## [0.3.0] - 2019-07-30
 ### Added
@@ -37,5 +41,6 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.4.0]: https://github.com/php-telegram-bot/support-bot/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/php-telegram-bot/support-bot/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/php-telegram-bot/support-bot/compare/0.1.0...0.2.0
