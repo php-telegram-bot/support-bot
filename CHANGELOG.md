@@ -5,16 +5,21 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
-- Description for commands.
-- `/id` command, to help users find their user and chat information.
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
-- PSR12 compatibility.
 ### Security
-- Minimum PHP 7.3.
-- Use master branch of core library.
+
+## [0.5.0] - 2019-11-24
+### Added
+- Description for commands. (#35)
+- `/id` command, to help users find their user and chat information. (#36)
+### Fixed
+- PSR12 compatibility. (#35)
+### Security
+- Minimum PHP 7.3. (#35)
+- Use master branch of core library. (#35)
 
 ## [0.4.0] - 2019-08-01
 ### Changed
@@ -46,6 +51,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.5.0]: https://github.com/php-telegram-bot/support-bot/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/php-telegram-bot/support-bot/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/php-telegram-bot/support-bot/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/php-telegram-bot/support-bot/compare/0.1.0...0.2.0
