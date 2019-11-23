@@ -16,45 +16,38 @@ namespace Longman\TelegramBot\Commands\SystemCommands;
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
+use Longman\TelegramBot\Request;
 
 /**
- * Generic message command
+ * Handle post sent from channel.
  */
-class GenericmessageCommand extends SystemCommand
+class ChannelpostCommand extends SystemCommand
 {
     /**
      * @var string
      */
-    protected $name = 'genericmessage';
+    protected $name = 'channelpost';
 
     /**
      * @var string
      */
-    protected $description = 'Handle generic message';
+    protected $description = 'Handle Channel Post';
 
     /**
      * @var string
      */
-    protected $version = '0.2.0';
+    protected $version = '0.1.0';
 
     /**
-     * Execute command
-     *
-     * @return ServerResponse
+     * @inheritdoc
      * @throws TelegramException
      */
     public function execute(): ServerResponse
     {
-        // Handle new chat members.
-        if ($this->getMessage()->getNewChatMembers()) {
-            return $this->getTelegram()->executeCommand('newchatmembers');
-        }
-
-        // Handle posts forwarded from channels.
-        if ($this->getMessage()->getForwardFrom()) {
+        if ($this->getChannelPost()->getCommand() === 'id') {
             return $this->getTelegram()->executeCommand('id');
         }
 
-        return parent::execute();
+        return Request::emptyResponse();
     }
 }

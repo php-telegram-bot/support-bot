@@ -6,6 +6,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 - Description for commands.
+- `/id` command, to help users find their user and chat information.
 ### Changed
 ### Deprecated
 ### Removed
