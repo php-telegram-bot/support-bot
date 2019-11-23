@@ -5,11 +5,15 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
+- Description for commands.
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
+- PSR12 compatibility.
 ### Security
+- Minimum PHP 7.3.
+- Use master branch of core library.
 
 ## [0.4.0] - 2019-08-01
 ### Changed
