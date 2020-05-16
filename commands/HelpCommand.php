@@ -11,12 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Longman\TelegramBot\Commands\UserCommands;
+namespace PhpTelegramBot\Core\Commands\UserCommands;
 
-use Longman\TelegramBot\Commands\Command;
-use Longman\TelegramBot\Commands\UserCommand;
-use Longman\TelegramBot\Entities\ServerResponse;
-use Longman\TelegramBot\Exception\TelegramException;
+use PhpTelegramBot\Core\Commands\Command;
+use PhpTelegramBot\Core\Commands\UserCommand;
+use PhpTelegramBot\Core\Entities\ServerResponse;
+use PhpTelegramBot\Core\Exception\TelegramException;
 
 /**
  * User "/help" command
