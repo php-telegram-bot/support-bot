@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Longman\TelegramBot\Commands\UserCommands;
+namespace PhpTelegramBot\Core\Commands\UserCommands;
 
-use Longman\TelegramBot\Commands\UserCommand;
-use Longman\TelegramBot\Entities\ServerResponse;
+use PhpTelegramBot\Core\Commands\UserCommand;
+use PhpTelegramBot\Core\Entities\ServerResponse;
 
 /**
  * User "/rules" command

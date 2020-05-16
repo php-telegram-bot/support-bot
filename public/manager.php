@@ -15,8 +15,8 @@ namespace TelegramBot\SupportBot;
 
 use Dotenv\Dotenv;
 use Exception;
-use Longman\TelegramBot\Exception\TelegramLogException;
-use Longman\TelegramBot\TelegramLog;
+use PhpTelegramBot\Core\Exception\TelegramLogException;
+use PhpTelegramBot\Core\TelegramLog;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

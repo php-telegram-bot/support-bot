@@ -11,12 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Longman\TelegramBot\Commands\SystemCommands;
+namespace PhpTelegramBot\Core\Commands\SystemCommands;
 
-use Longman\TelegramBot\Commands\SystemCommand;
-use Longman\TelegramBot\Entities\ServerResponse;
-use Longman\TelegramBot\Exception\TelegramException;
-use Longman\TelegramBot\Request;
+use PhpTelegramBot\Core\Commands\SystemCommand;
+use PhpTelegramBot\Core\Entities\ServerResponse;
+use PhpTelegramBot\Core\Exception\TelegramException;
+use PhpTelegramBot\Core\Request;
 
 /**
  * Handle post sent from channel.

@@ -1,5 +1,5 @@
 {
-    "name": "telegram-bot/support-bot",
+    "name": "php-telegram-bot/support-bot",
     "type": "project",
     "description": "Friendly and helpful bot for t.me/PHP_Telegram_Support_Bot",
     "keywords": ["telegram", "bot", "manager"],
@@ -21,7 +21,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "php-telegram-bot/telegram-bot-manager": "^1.5",
-        "longman/telegram-bot": "dev-master as 0.59",
+        "php-telegram-bot/core": "dev-master as 0.59",
         "noplanman/service-webhook-handler": "^0.2",
         "vlucas/phpdotenv": "^3.6",
         "php-http/guzzle6-adapter": "^1.1",

@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace TelegramBot\SupportBot;
 
-use Longman\TelegramBot\DB;
-use Longman\TelegramBot\Request;
-use Longman\TelegramBot\TelegramLog;
+use PhpTelegramBot\Core\DB;
+use PhpTelegramBot\Core\Request;
+use PhpTelegramBot\Core\TelegramLog;
 
 class Helpers
 {
