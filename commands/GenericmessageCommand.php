@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
+use Longman\TelegramBot\Commands\UserCommands\DonateCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 
@@ -45,13 +46,21 @@ class GenericmessageCommand extends SystemCommand
      */
     public function execute(): ServerResponse
     {
+        $message = $this->getMessage();
+        $user_id = $message->getFrom()->getId();
+
         // Handle new chat members.
-        if ($this->getMessage()->getNewChatMembers()) {
+        if ($message->getNewChatMembers()) {
             return $this->getTelegram()->executeCommand('newchatmembers');
         }
 
+        // Handle successful payment of donation.
+        if ($payment = $message->getSuccessfulPayment()) {
+            return DonateCommand::handleSuccessfulPayment($payment, $user_id);
+        }
+
         // Handle posts forwarded from channels.
-        if ($this->getMessage()->getForwardFrom()) {
+        if ($message->getForwardFrom()) {
             return $this->getTelegram()->executeCommand('id');
         }
 
