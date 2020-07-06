@@ -113,6 +113,7 @@ function parseReleaseBody($body, $user, $repo): string
     }, $body);
 
     $github_client = new Client();
+    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'));
     $github_client->addCache(new Pool(new MySQL(
         new PDO('mysql:dbname=' . getenv('TG_DB_DATABASE') . ';host=' . getenv('TG_DB_HOST'), getenv('TG_DB_USER'), getenv('TG_DB_PASSWORD'))
     )));
