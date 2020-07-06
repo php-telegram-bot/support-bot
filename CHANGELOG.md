@@ -11,6 +11,13 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Fixed
 ### Security
 
+## [0.6.0] - 2020-07-06
+### Added
+- New `/donate` command, to allow users to donate via Telegram Payments. (#40)
+- GitHub authentication to prevent hitting limits. (#41)
+### Changed
+- Link to the `/rules` command in the welcome message. (#42)
+
 ## [0.5.0] - 2019-11-24
 ### Added
 - Description for commands. (#35)
@@ -51,6 +58,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.6.0]: https://github.com/php-telegram-bot/support-bot/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/php-telegram-bot/support-bot/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/php-telegram-bot/support-bot/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/php-telegram-bot/support-bot/compare/0.2.0...0.3.0

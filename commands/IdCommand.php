@@ -36,6 +36,11 @@ class IdCommand extends UserCommand
     /**
      * @var string
      */
+    protected $usage = '/id or forward any message to @PHP_Telegram_Support_Bot';
+
+    /**
+     * @var string
+     */
     protected $version = '0.1.0';
 
     /**
