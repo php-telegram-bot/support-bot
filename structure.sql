@@ -8,3 +8,5 @@ CREATE TABLE IF NOT EXISTS `simple_options` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+ALTER TABLE `user` ADD COLUMN `activated_at` TIMESTAMP NULL COMMENT 'Timestamp when the user has agreed to the rules and has been allowed to post in the support group.';

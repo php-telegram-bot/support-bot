@@ -53,6 +53,10 @@ class StartCommand extends SystemCommand
      */
     public function execute(): ServerResponse
     {
+        if ('activate' === $this->getMessage()->getText(true)) {
+            return $this->getTelegram()->executeCommand('activate');
+        }
+
         if ('rules' === $this->getMessage()->getText(true)) {
             return $this->getTelegram()->executeCommand('rules');
         }

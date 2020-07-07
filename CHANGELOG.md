@@ -5,6 +5,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
+- Rules must be agreed to before allowing a user to post in the group.
 ### Changed
 ### Deprecated
 ### Removed

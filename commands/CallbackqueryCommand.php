@@ -13,6 +13,7 @@ namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Commands\UserCommands\DonateCommand;
+use Longman\TelegramBot\Commands\UserCommands\RulesCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 
 /**
@@ -47,18 +48,17 @@ class CallbackqueryCommand extends SystemCommand
     public function execute(): ServerResponse
     {
         $callback_query = $this->getCallbackQuery();
-        parse_str($callback_query->getData(), $data);
+        parse_str($callback_query->getData(), $callback_data);
 
-        if ('donate' === $data['command']) {
+        if ('donate' === $callback_data['command']) {
             DonateCommand::createPaymentInvoice(
                 $callback_query->getFrom()->getId(),
-                $data['amount'],
-                $data['currency']
+                $callback_data['amount'],
+                $callback_data['currency']
             );
 
-            return $callback_query->answer([
-                'text' => 'Awesome, an invoice has been sent to you.',
-            ]);
+        if ('rules' === $callback_data['command']) {
+            return RulesCommand::handleCallbackQuery($callback_query, $callback_data);
         }
 
         return $callback_query->answer();

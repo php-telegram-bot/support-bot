@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Longman\TelegramBot\Commands\SystemCommands;
 
+use LitEmoji\LitEmoji;
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Entities\ChatMember;
+use Longman\TelegramBot\Entities\InlineKeyboard;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Entities\User;
 use Longman\TelegramBot\Exception\TelegramException;
@@ -39,7 +41,7 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '0.4.0';
+    protected $version = '0.5.0';
 
     /**
      * @var int
@@ -94,11 +96,20 @@ class NewchatmembersCommand extends SystemCommand
             return '<a href="tg://user?id=' . $new_user->getId() . '">' . filter_var($new_user->getFirstName(), FILTER_SANITIZE_SPECIAL_CHARS) . '</a>';
         }, $new_users));
 
-        $text = "Welcome {$new_users_text} to the <b>{$this->group_name}</b> group\n";
-        $text .= 'Please remember that this is <b>NOT</b> the Telegram Support Chat.' . PHP_EOL;
-        $text .= 'Read the <a href="https://t.me/PHP_Telegram_Support_Bot?start=rules">Rules</a> that apply here.';
+        $text = ":wave: Welcome {$new_users_text} to the <b>{$this->group_name}</b> group\n\n";
+        $text .= 'Please read and agree to the rules before posting here, thank you!';
 
-        $welcome_message_sent = $this->replyToChat($text, ['parse_mode' => 'HTML', 'disable_web_page_preview' => true]);
+        $welcome_message_sent = $this->replyToChat(
+            LitEmoji::encodeUnicode($text),
+            [
+                'parse_mode'               => 'HTML',
+                'disable_web_page_preview' => true,
+                'disable_notification'     => true,
+                'reply_markup'             => new InlineKeyboard([
+                    ['text' => LitEmoji::encodeUnicode(':orange_book: Read the Rules'), 'url' => 'https://t.me/PHP_Telegram_Support_Bot?start=rules'],
+                ]),
+            ]
+        );
         if (!$welcome_message_sent->isOk()) {
             return Request::emptyResponse();
         }
