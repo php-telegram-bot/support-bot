@@ -102,4 +102,56 @@ class Helpers
         $new_welcome_message_ids = array_values($welcome_message_ids) + ['latest' => $welcome_message_id];
         self::setSimpleOption('welcome_message_ids', $new_welcome_message_ids);
     }
+
+    /**
+     * Handle expired activations and kick those users.
+     */
+    public static function handleExpiredActivations(): void
+    {
+        $expiry_time      = strtotime(getenv('TG_SUPPORT_GROUP_ACTIVATION_EXPIRE_TIME') ?: '15 min');
+        $expiry_time_in_s = $expiry_time - time();
+
+        // If the user is already activated, keep the initial activation date.
+        $users_to_kick = DB::getPdo()->query("
+            SELECT `id`
+            FROM " . TB_USER . "
+            WHERE `joined_at` < (NOW() - INTERVAL {$expiry_time_in_s} SECOND)
+              AND `activated_at` IS NULL
+        ");
+        foreach ($users_to_kick as $user_to_kick) {
+            self::kickUser((int) $user_to_kick['id']);
+        }
+    }
+
+    /**
+     * Kick the passed user.
+     *
+     * @param int $user_id
+     *
+     * @return bool
+     */
+    protected static function kickUser(int $user_id): bool
+    {
+        try {
+            $ban_time  = strtotime(getenv('TG_SUPPORT_GROUP_BAN_TIME') ?: '1 day');
+            $kick_user = Request::kickChatMember([
+                'chat_id'    => getenv('TG_SUPPORT_GROUP_ID'),
+                'user_id'    => $user_id,
+                'until_date' => $ban_time,
+            ]);
+            if ($kick_user->isOk()) {
+                return DB::getPdo()->prepare("
+                    UPDATE " . TB_USER . "
+                    SET `activated_at` = NULL,
+                        `joined_at` = NULL,
+                        `kicked_at` = NOW()
+                    WHERE `id` = ?
+                ")->execute([$user_id]);
+            }
+        } catch (\Throwable $e) {
+            // Fail silently.
+        }
+
+        return false;
+    }
 }

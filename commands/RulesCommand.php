@@ -74,15 +74,7 @@ class RulesCommand extends UserCommand
                 ]);
             }
 
-            Request::editMessageReplyMarkup([
-                'chat_id'      => $chat_id,
-                'message_id'   => $message->getMessageId(),
-                'reply_markup' => new InlineKeyboard([
-                    ['text' => LitEmoji::encodeUnicode(':white_check_mark: Ok! Go to Bot Support group...'), 'url' => 'https://t.me/PHP_Telegram_Bot_Support'],
-                ]),
-            ]);
-
-            Request::restrictChatMember([
+            $give_permissions = Request::restrictChatMember([
                 'chat_id'     => getenv('TG_SUPPORT_GROUP_ID'),
                 'user_id'     => $clicked_user_id,
                 'permissions' => new ChatPermissions([
@@ -90,6 +82,14 @@ class RulesCommand extends UserCommand
                     'can_send_media_messages'   => true,
                     'can_add_web_page_previews' => true,
                     'can_invite_users'          => true,
+                ]),
+            ]);
+
+            Request::editMessageReplyMarkup([
+                'chat_id'      => $chat_id,
+                'message_id'   => $message->getMessageId(),
+                'reply_markup' => new InlineKeyboard([
+                    ['text' => LitEmoji::encodeUnicode(':white_check_mark: Ok! Go to Bot Support group...'), 'url' => 'https://t.me/' . getenv('TG_SUPPORT_GROUP_ID')],
                 ]),
             ]);
 
@@ -127,7 +127,7 @@ Also keep in mind that the [PHP Telegram Bot Support Chat](https://t.me/PHP_Tele
             'disable_web_page_preview' => true,
         ];
 
-        if (!self::userHasAgreedToRules($this->getMessage()->getFrom()->getId())) {
+        if (!self::hasUserAgreedToRules($this->getMessage()->getFrom()->getId())) {
             $text                 .= PHP_EOL . 'You **must agree** to these rules to post in the support group. Simply click the button below.';
             $data['reply_markup'] = new InlineKeyboard([
                 ['text' => LitEmoji::encodeUnicode(':+1: I Agree to the Rules'), 'callback_data' => 'command=rules&action=agree'],
@@ -137,7 +137,14 @@ Also keep in mind that the [PHP Telegram Bot Support Chat](https://t.me/PHP_Tele
         return $this->replyToChat(LitEmoji::encodeUnicode($text), $data);
     }
 
-    protected static function userHasAgreedToRules(int $user_id): bool
+    /**
+     * Check if the passed user has agreed to the rules.
+     *
+     * @param int $user_id
+     *
+     * @return bool
+     */
+    protected static function hasUserAgreedToRules(int $user_id): bool
     {
         $statement = DB::getPdo()->prepare('
             SELECT `activated_at`
