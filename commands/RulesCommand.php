@@ -89,7 +89,7 @@ class RulesCommand extends UserCommand
                 'chat_id'      => $chat_id,
                 'message_id'   => $message->getMessageId(),
                 'reply_markup' => new InlineKeyboard([
-                    ['text' => LitEmoji::encodeUnicode(':white_check_mark: Ok! Go to Bot Support group...'), 'url' => 'https://t.me/' . getenv('TG_SUPPORT_GROUP_ID')],
+                    ['text' => LitEmoji::encodeUnicode(':white_check_mark: Ok! Go to Bot Support group...'), 'url' => 'https://t.me/' . getenv('TG_SUPPORT_GROUP_USERNAME')],
                 ]),
             ]);
 
