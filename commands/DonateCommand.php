@@ -16,6 +16,7 @@ namespace Longman\TelegramBot\Commands\UserCommands;
 use JsonException;
 use LitEmoji\LitEmoji;
 use Longman\TelegramBot\Commands\UserCommand;
+use Longman\TelegramBot\Entities\CallbackQuery;
 use Longman\TelegramBot\Entities\InlineKeyboard;
 use Longman\TelegramBot\Entities\Payments\LabeledPrice;
 use Longman\TelegramBot\Entities\Payments\SuccessfulPayment;
@@ -56,6 +57,27 @@ class DonateCommand extends UserCommand
      * @var bool
      */
     protected $private_only = true;
+
+    /**
+     * Handle the callback queries regarding the /donate command.
+     *
+     * @param CallbackQuery $callback_query
+     * @param array         $callback_data
+     *
+     * @return ServerResponse
+     */
+    public static function handleCallbackQuery(CallbackQuery $callback_query, array $callback_data): ServerResponse
+    {
+        self::createPaymentInvoice(
+            $callback_query->getFrom()->getId(),
+            $callback_data['amount'],
+            $callback_data['currency']
+        );
+
+        return $callback_query->answer([
+            'text' => 'Awesome, an invoice has been sent to you.',
+        ]);
+    }
 
     /**
      * @return ServerResponse

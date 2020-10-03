@@ -15,8 +15,11 @@ namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use LitEmoji\LitEmoji;
 use Longman\TelegramBot\Commands\SystemCommand;
+use Longman\TelegramBot\DB;
 use Longman\TelegramBot\Entities\ChatMember;
+use Longman\TelegramBot\Entities\ChatPermissions;
 use Longman\TelegramBot\Entities\InlineKeyboard;
+use Longman\TelegramBot\Entities\Message;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Entities\User;
 use Longman\TelegramBot\Exception\TelegramException;
@@ -44,6 +47,11 @@ class NewchatmembersCommand extends SystemCommand
     protected $version = '0.5.0';
 
     /**
+     * @var Message
+     */
+    private $message;
+
+    /**
      * @var int
      */
     private $chat_id;
@@ -64,16 +72,22 @@ class NewchatmembersCommand extends SystemCommand
      */
     public function execute(): ServerResponse
     {
-        $message       = $this->getMessage();
-        $this->chat_id = $message->getChat()->getId();
-        $this->user_id = $message->getFrom()->getId();
+        $this->message = $this->getMessage();
+        $this->chat_id = $this->message->getChat()->getId();
+        $this->user_id = $this->message->getFrom()->getId();
 
-        $this->group_name = $message->getChat()->getTitle();
+        $this->group_name = $this->message->getChat()->getTitle();
 
         ['users' => $new_users, 'bots' => $new_bots] = $this->getNewUsersAndBots();
 
         // Kick bots if they weren't added by an admin.
         $this->kickDisallowedBots($new_bots);
+
+        // Restrict all permissions for new users.
+        $this->restrictNewUsers($new_users);
+
+        // Set the joined date for all new group members.
+        $this->updateUsersJoinedDate($new_users);
 
         return $this->refreshWelcomeMessage($new_users);
     }
@@ -106,7 +120,7 @@ class NewchatmembersCommand extends SystemCommand
                 'disable_web_page_preview' => true,
                 'disable_notification'     => true,
                 'reply_markup'             => new InlineKeyboard([
-                    ['text' => LitEmoji::encodeUnicode(':orange_book: Read the Rules'), 'url' => 'https://t.me/PHP_Telegram_Support_Bot?start=rules'],
+                    ['text' => LitEmoji::encodeUnicode(':orange_book: Read the Rules'), 'url' => 'https://t.me/' . getenv('TG_BOT_USERNAME') . '?start=rules'],
                 ]),
             ]
         );
@@ -156,7 +170,7 @@ class NewchatmembersCommand extends SystemCommand
         $users = [];
         $bots  = [];
 
-        foreach ($this->getMessage()->getNewChatMembers() as $member) {
+        foreach ($this->message->getNewChatMembers() as $member) {
             if ($member->getIsBot()) {
                 $bots[] = $member;
                 continue;
@@ -187,5 +201,59 @@ class NewchatmembersCommand extends SystemCommand
                 'user_id' => $bot->getId(),
             ]);
         }
+    }
+
+    /**
+     * Write users join date to DB.
+     *
+     * @param array $new_users
+     *
+     * @return bool
+     */
+    private function updateUsersJoinedDate($new_users): bool
+    {
+        $new_users_ids = array_map(static function (User $user) {
+            return $user->getId();
+        }, $new_users);
+
+        // Update "Joined Date" for new users.
+        return DB::getPdo()->prepare("
+            UPDATE " . TB_USER . "
+            SET `joined_at` = ?
+            WHERE `id` IN (?)
+        ")->execute([date('Y-m-d H:i:s'), implode(',', $new_users_ids)]);
+    }
+
+    /**
+     * Restrict permissions in support group for passed users.
+     *
+     * @param array $new_users
+     *
+     * @return array
+     */
+    private function restrictNewUsers($new_users): array
+    {
+        $responses = [];
+
+        /** @var User[] $new_users */
+        foreach ($new_users as $new_user) {
+            $user_id             = $new_user->getId();
+            $responses[$user_id] = Request::restrictChatMember([
+                'chat_id'     => getenv('TG_SUPPORT_GROUP_ID'),
+                'user_id'     => $user_id,
+                'permissions' => new ChatPermissions([
+                    'can_send_messages'         => false,
+                    'can_send_media_messages'   => false,
+                    'can_send_polls'            => false,
+                    'can_send_other_messages'   => false,
+                    'can_add_web_page_previews' => false,
+                    'can_change_info'           => false,
+                    'can_invite_users'          => false,
+                    'can_pin_messages'          => false,
+                ]),
+            ]);
+        }
+
+        return $responses;
     }
 }

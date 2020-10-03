@@ -17,6 +17,7 @@ use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Commands\UserCommands\DonateCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
+use Longman\TelegramBot\Request;
 
 /**
  * Generic message command
@@ -51,7 +52,11 @@ class GenericmessageCommand extends SystemCommand
 
         // Handle new chat members.
         if ($message->getNewChatMembers()) {
+            $this->deleteThisMessage(); // Service message.
             return $this->getTelegram()->executeCommand('newchatmembers');
+        }
+        if ($message->getLeftChatMember()) {
+            $this->deleteThisMessage(); // Service message.
         }
 
         // Handle successful payment of donation.
@@ -65,5 +70,18 @@ class GenericmessageCommand extends SystemCommand
         }
 
         return parent::execute();
+    }
+
+    /**
+     * Delete the current message.
+     *
+     * @return ServerResponse
+     */
+    private function deleteThisMessage(): ServerResponse
+    {
+        return Request::deleteMessage([
+            'chat_id'    => $this->getMessage()->getChat()->getId(),
+            'message_id' => $this->getMessage()->getMessageId(),
+        ]);
     }
 }

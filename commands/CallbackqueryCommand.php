@@ -51,11 +51,8 @@ class CallbackqueryCommand extends SystemCommand
         parse_str($callback_query->getData(), $callback_data);
 
         if ('donate' === $callback_data['command']) {
-            DonateCommand::createPaymentInvoice(
-                $callback_query->getFrom()->getId(),
-                $callback_data['amount'],
-                $callback_data['currency']
-            );
+            return DonateCommand::handleCallbackQuery($callback_query, $callback_data);
+        }
 
         if ('rules' === $callback_data['command']) {
             return RulesCommand::handleCallbackQuery($callback_query, $callback_data);
