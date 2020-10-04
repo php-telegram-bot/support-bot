@@ -5,12 +5,19 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
-- Rules must be agreed to before allowing a user to post in the group.
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [0.7.0] - 2020-10-04
+### Added
+- Rules must be agreed to before allowing a user to post in the group. (#43)
+### Changed
+- Bumped dependencies, use explicit version 0.64.0 of core.
+### Security
+- Minimum PHP 7.4.
 
 ## [0.6.0] - 2020-07-06
 ### Added
@@ -59,6 +66,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.7.0]: https://github.com/php-telegram-bot/support-bot/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/php-telegram-bot/support-bot/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/php-telegram-bot/support-bot/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/php-telegram-bot/support-bot/compare/0.3.0...0.4.0

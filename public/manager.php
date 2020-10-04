@@ -76,8 +76,6 @@ try {
 
     $bot = new BotManager($params);
     $bot->run();
-} catch (TelegramLogException $e) {
-    // Silence... beautiful silence =)
 } catch (Throwable $e) {
     TelegramLog::error($e->getMessage());
 }

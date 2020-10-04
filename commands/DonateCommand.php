@@ -244,7 +244,7 @@ class DonateCommand extends UserCommand
      * @return int|ServerResponse
      * @throws TelegramException
      */
-    protected function validateAmount(string $amount, $currency)
+    protected function validateAmount(string $amount, array $currency)
     {
         $int_amount = (int) ceil((float) $amount);
 

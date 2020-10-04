@@ -49,22 +49,22 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * @var Message
      */
-    private $message;
+    private Message $message;
 
     /**
      * @var int
      */
-    private $chat_id;
+    private int $chat_id;
 
     /**
      * @var int
      */
-    private $user_id;
+    private int $user_id;
 
     /**
      * @var string
      */
-    private $group_name = 'PHP Telegram Support Bot';
+    private string $group_name = 'PHP Telegram Support Bot';
 
     /**
      * @inheritdoc
@@ -128,6 +128,7 @@ class NewchatmembersCommand extends SystemCommand
             return Request::emptyResponse();
         }
 
+        /** @var Message $welcome_message */
         $welcome_message = $welcome_message_sent->getResult();
 
         $new_message_id = $welcome_message->getMessageId();
@@ -206,11 +207,11 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * Write users join date to DB.
      *
-     * @param array $new_users
+     * @param User[] $new_users
      *
      * @return bool
      */
-    private function updateUsersJoinedDate($new_users): bool
+    private function updateUsersJoinedDate(array $new_users): bool
     {
         $new_users_ids = array_map(static function (User $user) {
             return $user->getId();
@@ -227,15 +228,14 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * Restrict permissions in support group for passed users.
      *
-     * @param array $new_users
+     * @param User[] $new_users
      *
      * @return array
      */
-    private function restrictNewUsers($new_users): array
+    private function restrictNewUsers(array $new_users): array
     {
         $responses = [];
 
-        /** @var User[] $new_users */
         foreach ($new_users as $new_user) {
             $user_id             = $new_user->getId();
             $responses[$user_id] = Request::restrictChatMember([

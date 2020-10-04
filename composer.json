@@ -2,7 +2,7 @@
     "name": "telegram-bot/support-bot",
     "type": "project",
     "description": "Friendly and helpful bot for t.me/PHP_Telegram_Support_Bot",
-    "keywords": ["telegram", "bot", "manager"],
+    "keywords": ["telegram", "bot", "manager", "support"],
     "license": "MIT",
     "homepage": "https://github.com/php-telegram-bot/support-bot",
     "support": {
@@ -17,23 +17,24 @@
         }
     ],
     "require": {
-        "php": ">= 7.3",
+        "php": ">= 7.4",
         "ext-json": "*",
         "ext-pdo": "*",
         "php-telegram-bot/telegram-bot-manager": "^1.5",
-        "longman/telegram-bot": "dev-master as 0.59",
+        "longman/telegram-bot": "0.64.0 as 0.59",
         "noplanman/service-webhook-handler": "^0.2",
         "vlucas/phpdotenv": "^3.6",
         "php-http/guzzle6-adapter": "^1.1",
-        "knplabs/github-api": "^2.12",
+        "knplabs/github-api": "^2.15",
         "elvanto/litemoji": "^1.4",
-        "monolog/monolog": "^2.0",
+        "monolog/monolog": "^2.1",
         "matthiasmullie/scrapbook": "^1.4"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-master",
         "squizlabs/php_codesniffer": "^3.5",
-        "jakub-onderka/php-parallel-lint": "^1.0",
-        "symfony/var-dumper": "^5.0"
+        "php-parallel-lint/php-parallel-lint": "^1.2",
+        "symfony/var-dumper": "^5.1"
     },
     "autoload": {
         "psr-4": {

@@ -16,6 +16,7 @@ namespace TelegramBot\SupportBot;
 use Longman\TelegramBot\DB;
 use Longman\TelegramBot\Request;
 use Longman\TelegramBot\TelegramLog;
+use Throwable;
 
 class Helpers
 {
@@ -29,7 +30,7 @@ class Helpers
      *
      * @return mixed
      */
-    public static function getSimpleOption($name, $default = false)
+    public static function getSimpleOption(string $name, $default = false)
     {
         return json_decode(DB::getPdo()->query("
             SELECT `value`
@@ -48,7 +49,7 @@ class Helpers
      *
      * @return bool
      */
-    public static function setSimpleOption($name, $value): bool
+    public static function setSimpleOption(string $name, $value): bool
     {
         return DB::getPdo()->prepare("
             INSERT INTO `simple_options`
@@ -96,7 +97,7 @@ class Helpers
      *
      * @param int $welcome_message_id
      */
-    public static function saveLatestWelcomeMessage($welcome_message_id): void
+    public static function saveLatestWelcomeMessage(int $welcome_message_id): void
     {
         $welcome_message_ids     = self::getSimpleOption('welcome_message_ids', []);
         $new_welcome_message_ids = array_values($welcome_message_ids) + ['latest' => $welcome_message_id];
@@ -143,12 +144,11 @@ class Helpers
                 return DB::getPdo()->prepare("
                     UPDATE " . TB_USER . "
                     SET `activated_at` = NULL,
-                        `joined_at` = NULL,
                         `kicked_at` = NOW()
                     WHERE `id` = ?
                 ")->execute([$user_id]);
             }
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             // Fail silently.
         }
 

@@ -91,7 +91,7 @@ function handleRelease(array $data): void
 ");
 
         // Post the release message!
-        sendTelegramMessage(getenv('TG_SUPPORT_GROUP_ID'), $message);
+        sendTelegramMessage((string) getenv('TG_SUPPORT_GROUP_ID'), $message);
     }
 }
 
@@ -104,7 +104,7 @@ function handleRelease(array $data): void
  *
  * @return string
  */
-function parseReleaseBody($body, $user, $repo): string
+function parseReleaseBody(string $body, string $user, string $repo): string
 {
     // Replace headers with bold text.
     $body = preg_replace_callback('~### (?<header>.*)~', static function ($matches) {
@@ -157,7 +157,7 @@ function parseReleaseBody($body, $user, $repo): string
  *
  * @return ServerResponse|null
  */
-function sendTelegramMessage($chat_id, $text): ?ServerResponse
+function sendTelegramMessage(string $chat_id, string $text): ?ServerResponse
 {
     try {
         new Telegram(getenv('TG_API_KEY'));

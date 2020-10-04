@@ -129,13 +129,11 @@ EOT;
         ksort($commands);
 
         $user_commands = array_filter($commands, static function ($command) {
-            /** @var Command $command */
             return $command->isUserCommand();
         });
         ksort($user_commands);
 
         $admin_commands = array_filter($commands, static function ($command) {
-            /** @var Command $command */
             return $command->isAdminCommand();
         });
         ksort($admin_commands);

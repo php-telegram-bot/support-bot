@@ -21,6 +21,7 @@ use Longman\TelegramBot\Entities\ChatPermissions;
 use Longman\TelegramBot\Entities\InlineKeyboard;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Request;
+use PDO;
 
 /**
  * User "/rules" command
@@ -74,7 +75,7 @@ class RulesCommand extends UserCommand
                 ]);
             }
 
-            $give_permissions = Request::restrictChatMember([
+            Request::restrictChatMember([
                 'chat_id'     => getenv('TG_SUPPORT_GROUP_ID'),
                 'user_id'     => $clicked_user_id,
                 'permissions' => new ChatPermissions([
@@ -153,7 +154,7 @@ Also keep in mind that the [PHP Telegram Bot Support Chat](https://t.me/PHP_Tele
               AND `activated_at` IS NOT NULL
         ');
         $statement->execute([$user_id]);
-        $agreed = $statement->fetchAll(\PDO::FETCH_COLUMN, 0);
+        $agreed = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
 
         return !empty($agreed);
     }

@@ -20,7 +20,7 @@ class Utils
      *
      * @param string $path
      */
-    public static function logWebhookData($path): void
+    public static function logWebhookData(string $path): void
     {
         $f = fopen($path, 'ab+');
         fwrite($f, sprintf(
