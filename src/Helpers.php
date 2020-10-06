@@ -118,6 +118,7 @@ class Helpers
             FROM " . TB_USER . "
             WHERE `joined_at` < (NOW() - INTERVAL {$expiry_time_in_s} SECOND)
               AND `activated_at` IS NULL
+              AND `kicked_at` IS NULL
         ");
         foreach ($users_to_kick as $user_to_kick) {
             self::kickUser((int) $user_to_kick['id']);

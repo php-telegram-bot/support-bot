@@ -9,6 +9,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Deprecated
 ### Removed
 ### Fixed
+- Only kick users that haven't already been kicked.
 ### Security
 
 ## [0.7.0] - 2020-10-04
