@@ -70,7 +70,7 @@ class DonateCommand extends UserCommand
     {
         self::createPaymentInvoice(
             $callback_query->getFrom()->getId(),
-            $callback_data['amount'],
+            (int) $callback_data['amount'],
             $callback_data['currency']
         );
 
