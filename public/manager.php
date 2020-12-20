@@ -15,8 +15,9 @@ namespace TelegramBot\SupportBot;
 
 use Dotenv\Dotenv;
 use Exception;
+use GuzzleHttp\Client;
 use Longman\TelegramBot\DB;
-use Longman\TelegramBot\Exception\TelegramLogException;
+use Longman\TelegramBot\Request;
 use Longman\TelegramBot\TelegramLog;
 use MatthiasMullie\Scrapbook\Adapters\MySQL;
 use MatthiasMullie\Scrapbook\KeyValueStore;
@@ -73,6 +74,7 @@ try {
     }
 
     initLogging();
+    initRequestClient();
 
     $bot = new BotManager($params);
     $bot->run();
@@ -107,4 +109,17 @@ function initLogging(): void
     }
 
     TelegramLog::initialize($logger, $update_logger);
+}
+
+/**
+ * Initialise a custom Request Client.
+ */
+function initRequestClient()
+{
+    $config = array_filter([
+        'base_uri' => getenv('TG_REQUEST_CLIENT_BASE_URI') ?: 'https://api.telegram.org',
+        'proxy'    => getenv('TG_REQUEST_CLIENT_PROXY'),
+    ]);
+
+    $config && Request::setClient(new Client($config));
 }

@@ -5,6 +5,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
+- Possibility to set custom Request Client.
 ### Changed
 ### Deprecated
 ### Removed
