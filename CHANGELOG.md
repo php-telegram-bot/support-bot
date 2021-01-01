@@ -5,13 +5,19 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
-- Possibility to set custom Request Client.
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
-- Only kick users that haven't already been kicked.
 ### Security
+
+## [0.8.0] - 2021-01-01
+### Added
+- Possibility to set custom Request Client.
+### Changed
+- Bumped dependencies, use explicit version 0.70.1 of core.
+### Fixed
+- Only kick users that haven't already been kicked.
 
 ## [0.7.0] - 2020-10-04
 ### Added
@@ -68,6 +74,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.8.0]: https://github.com/php-telegram-bot/support-bot/compare/0.7.0...0.8.0
 [0.7.0]: https://github.com/php-telegram-bot/support-bot/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/php-telegram-bot/support-bot/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/php-telegram-bot/support-bot/compare/0.4.0...0.5.0
