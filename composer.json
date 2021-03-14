@@ -17,18 +17,19 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "php-telegram-bot/telegram-bot-manager": "^1.6",
-        "longman/telegram-bot": "0.70.1 as 0.70",
+        "longman/telegram-bot": "0.71.0 as 0.70",
         "noplanman/service-webhook-handler": "^0.2",
-        "vlucas/phpdotenv": "^3.6",
-        "php-http/guzzle7-adapter": "^0.1",
-        "knplabs/github-api": "^2.19",
-        "elvanto/litemoji": "^1.4",
+        "vlucas/phpdotenv": "^5.3",
+        "elvanto/litemoji": "^4.0",
         "monolog/monolog": "^2.2",
-        "matthiasmullie/scrapbook": "^1.4"
+        "matthiasmullie/scrapbook": "^1.4",
+        "knplabs/github-api": "^3.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "http-interop/http-factory-guzzle": "^1.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",

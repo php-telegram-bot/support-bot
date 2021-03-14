@@ -30,7 +30,7 @@ class Helpers
      *
      * @return mixed
      */
-    public static function getSimpleOption(string $name, $default = false)
+    public static function getSimpleOption(string $name, $default = false): mixed
     {
         return json_decode(DB::getPdo()->query("
             SELECT `value`
@@ -49,7 +49,7 @@ class Helpers
      *
      * @return bool
      */
-    public static function setSimpleOption(string $name, $value): bool
+    public static function setSimpleOption(string $name, mixed $value): bool
     {
         return DB::getPdo()->prepare("
             INSERT INTO `simple_options`
@@ -149,7 +149,7 @@ class Helpers
                     WHERE `id` = ?
                 ")->execute([$user_id]);
             }
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             // Fail silently.
         }
 

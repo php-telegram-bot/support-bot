@@ -148,7 +148,7 @@ class DonateCommand extends UserCommand
             }
 
             return json_decode($currencies, true, 512, JSON_THROW_ON_ERROR);
-        } catch (JsonException $e) {
+        } catch (JsonException) {
             return [];
         }
     }

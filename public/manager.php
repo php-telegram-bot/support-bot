@@ -30,7 +30,7 @@ use Throwable;
 
 // Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
-Dotenv::create(__DIR__ . '/..')->load();
+Dotenv::createUnsafeImmutable(__DIR__ . '/..')->load();
 
 function cache(): KeyValueStore
 {

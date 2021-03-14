@@ -29,7 +29,7 @@ use TelegramBot\SupportBot\Webhooks\Utils;
 
 // Composer autoloader.
 require_once __DIR__ . '/../../vendor/autoload.php';
-Dotenv\Dotenv::create(__DIR__ . '/../..')->load();
+Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/../..')->load();
 
 $webhook = new GitHubHandler(getenv('TG_WEBHOOK_SECRET_GITHUB'));
 if (!$webhook->validate()) {
@@ -113,7 +113,7 @@ function parseReleaseBody(string $body, string $user, string $repo): string
     }, $body);
 
     $github_client = new Client();
-    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'));
+    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'), Client::AUTH_ACCESS_TOKEN);
     $github_client->addCache(new Pool(new MySQL(
         new PDO('mysql:dbname=' . getenv('TG_DB_DATABASE') . ';host=' . getenv('TG_DB_HOST'), getenv('TG_DB_USER'), getenv('TG_DB_PASSWORD'))
     )));

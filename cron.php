@@ -19,7 +19,7 @@ use Longman\TelegramBot\TelegramLog;
 
 // Composer autoloader.
 require_once __DIR__ . '/vendor/autoload.php';
-Dotenv::create(__DIR__)->load();
+Dotenv::createUnsafeImmutable(__DIR__)->load();
 
 try {
     $telegram = new Telegram(getenv('TG_API_KEY'), getenv('TG_BOT_USERNAME'));

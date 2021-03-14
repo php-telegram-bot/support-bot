@@ -6,6 +6,8 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 ### Changed
+- Moved to PHP 8.
+- Bump to version 0.71 of core.
 ### Deprecated
 ### Removed
 ### Fixed
