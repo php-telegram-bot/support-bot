@@ -6,12 +6,15 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 ### Changed
-- Moved to PHP 8.
-- Bump to version 0.71 of core.
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [0.9.0] - 2021-03-14
+### Changed
+- Moved to PHP 8.
+- Bump to version 0.71 of core.
 
 ## [0.8.0] - 2021-01-01
 ### Added
@@ -76,6 +79,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.9.0]: https://github.com/php-telegram-bot/support-bot/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/php-telegram-bot/support-bot/compare/0.7.0...0.8.0
 [0.7.0]: https://github.com/php-telegram-bot/support-bot/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/php-telegram-bot/support-bot/compare/0.5.0...0.6.0
