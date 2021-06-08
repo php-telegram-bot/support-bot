@@ -120,6 +120,9 @@ Don't spam or send Messages with useless Content. When repeated you may be kicke
 **:robot: No Bots**
 Please do not add a Bot inside this Chat without asking the Admins first. Feel free to mention the Bot in a Message
 
+**:paper: Use Pastebin to post Source Code**
+If you want to share your Code for troubleshooting, please upload it to [Pastebin](https://pastebin.com) and post the link. Don't send longer code parts directly in the Chat.
+
 Also keep in mind that the [PHP Telegram Bot Support Chat](https://t.me/PHP_Telegram_Bot_Support) applies only for the [PHP Telegram Bot library](https://github.com/php-telegram-bot/core).
 ";
 
