@@ -5,6 +5,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
+- Rules notice to use Pastebin instead of posting code directly.
 ### Changed
 ### Deprecated
 ### Removed
