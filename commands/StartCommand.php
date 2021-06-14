@@ -11,16 +11,16 @@
 
 declare(strict_types=1);
 
-namespace Longman\TelegramBot\Commands\SystemCommands;
+namespace Longman\TelegramBot\Commands\UserCommands;
 
-use Longman\TelegramBot\Commands\SystemCommand;
+use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 
 /**
  * System "/start" command
  */
-class StartCommand extends SystemCommand
+class StartCommand extends UserCommand
 {
     /**
      * @var string
@@ -35,7 +35,7 @@ class StartCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '0.1.0';
+    protected $version = '0.2.0';
 
     /**
      * @var string
@@ -53,14 +53,13 @@ class StartCommand extends SystemCommand
      */
     public function execute(): ServerResponse
     {
-        if ('activate' === $this->getMessage()->getText(true)) {
-            return $this->getTelegram()->executeCommand('activate');
+        $text = $this->getMessage()->getText(true);
+
+        // Fall back to /help command.
+        if (!in_array($text, ['activate', 'rules'])) {
+            $text = 'help';
         }
 
-        if ('rules' === $this->getMessage()->getText(true)) {
-            return $this->getTelegram()->executeCommand('rules');
-        }
-
-        return $this->getTelegram()->executeCommand('help');
+        return $this->getTelegram()->executeCommand($text);
     }
 }

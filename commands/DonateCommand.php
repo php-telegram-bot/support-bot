@@ -27,6 +27,8 @@ use Longman\TelegramBot\Request;
 use function TelegramBot\SupportBot\cache;
 
 /**
+ * User "/donate" command
+ *
  * Donate using Telegram Payments.
  */
 class DonateCommand extends UserCommand
@@ -51,7 +53,7 @@ class DonateCommand extends UserCommand
     /**
      * @var string
      */
-    protected $version = '0.1.0';
+    protected $version = '0.1.1';
 
     /**
      * @var bool
@@ -192,7 +194,7 @@ class DonateCommand extends UserCommand
      * @return array|ServerResponse
      * @throws TelegramException
      */
-    protected function validateCurrencyFetching()
+    protected function validateCurrencyFetching(): array|ServerResponse
     {
         if ($currencies = $this->fetchCurrenciesFromTelegram()) {
             return $currencies;
@@ -216,7 +218,7 @@ class DonateCommand extends UserCommand
      * @return array|ServerResponse
      * @throws TelegramException
      */
-    protected function validateCurrency(string $currency_code)
+    protected function validateCurrency(string $currency_code): array|ServerResponse
     {
         $currencies = $this->fetchCurrenciesFromTelegram();
 
@@ -244,7 +246,7 @@ class DonateCommand extends UserCommand
      * @return int|ServerResponse
      * @throws TelegramException
      */
-    protected function validateAmount(string $amount, array $currency)
+    protected function validateAmount(string $amount, array $currency): int|ServerResponse
     {
         $int_amount = (int) ceil((float) $amount);
 

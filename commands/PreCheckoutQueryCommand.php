@@ -1,10 +1,13 @@
 <?php
 
-namespace Longman\TelegramBot\Commands\UserCommands;
+namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 
+/**
+ * No pre-checkout checks required at this point, just approve.
+ */
 class PreCheckoutQueryCommand extends SystemCommand
 {
     /**

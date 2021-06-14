@@ -38,7 +38,7 @@ class CallbackqueryCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '0.1.0';
+    protected $version = '0.2.0';
 
     /**
      * Command execute method
@@ -50,14 +50,10 @@ class CallbackqueryCommand extends SystemCommand
         $callback_query = $this->getCallbackQuery();
         parse_str($callback_query->getData(), $callback_data);
 
-        if ('donate' === $callback_data['command']) {
-            return DonateCommand::handleCallbackQuery($callback_query, $callback_data);
-        }
-
-        if ('rules' === $callback_data['command']) {
-            return RulesCommand::handleCallbackQuery($callback_query, $callback_data);
-        }
-
-        return $callback_query->answer();
+        return match ($callback_data['command'] ?? null) {
+            'donate' => DonateCommand::handleCallbackQuery($callback_query, $callback_data),
+            'rules' => RulesCommand::handleCallbackQuery($callback_query, $callback_data),
+            default => $callback_query->answer(),
+        };
     }
 }

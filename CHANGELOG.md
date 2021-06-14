@@ -5,12 +5,20 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
-- Rules notice to use Pastebin instead of posting code directly.
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [0.10.0] - 2021-06-14
+### Added
+- Rules notice to use Pastebin instead of posting code directly.
+### Changed
+- Bumped to manager 1.7.0 and core 0.73.
+- Various code tweaks, make use of PHP 8.
+### Security
+- Bumped dependencies.
 
 ## [0.9.0] - 2021-03-14
 ### Changed

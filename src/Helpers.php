@@ -30,7 +30,7 @@ class Helpers
      *
      * @return mixed
      */
-    public static function getSimpleOption(string $name, $default = false): mixed
+    public static function getSimpleOption(string $name, mixed $default = false): mixed
     {
         return json_decode(DB::getPdo()->query("
             SELECT `value`

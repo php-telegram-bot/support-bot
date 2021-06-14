@@ -25,6 +25,9 @@ use PDO;
 
 /**
  * User "/rules" command
+ *
+ * Display the rules of the support group.
+ * Provide an inline button for the user to agree to the rules.
  */
 class RulesCommand extends UserCommand
 {
@@ -41,7 +44,7 @@ class RulesCommand extends UserCommand
     /**
      * @var string
      */
-    protected $version = '0.1.0';
+    protected $version = '0.2.0';
 
     /**
      * @var string
@@ -109,19 +112,19 @@ class RulesCommand extends UserCommand
     public function execute(): ServerResponse
     {
         $text = "
-Rules:  `English only | No Spamming or Nonsense Posting | No Bots`
+Rules:  `English only | No Spam | No Bots | No long Code`
 
 **:uk: English only**
 Please keep your conversations in English inside this chatroom, otherwise your message will be deleted.
 
 **:do_not_litter: No Spamming or Nonsense Posting**
-Don't spam or send Messages with useless Content. When repeated you may be kicked or banned.
+Don't spam or send Messages with useless Content. When repeated, you may be kicked or banned.
 
 **:robot: No Bots**
 Please do not add a Bot inside this Chat without asking the Admins first. Feel free to mention the Bot in a Message
 
-**:paper: Use Pastebin to post Source Code**
-If you want to share your Code for troubleshooting, please upload it to [Pastebin](https://pastebin.com) and post the link. Don't send longer code parts directly in the Chat.
+**:memo: Use Pastebin to post Source Code**
+If you want to share your Code for troubleshooting, please upload it to [Pastebin](https://pastebin.com) and post the link. Don't send long code parts directly in the Chat.
 
 Also keep in mind that the [PHP Telegram Bot Support Chat](https://t.me/PHP_Telegram_Bot_Support) applies only for the [PHP Telegram Bot library](https://github.com/php-telegram-bot/core).
 ";

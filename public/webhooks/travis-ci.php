@@ -18,9 +18,10 @@ use TelegramBot\SupportBot\Webhooks\Utils;
 require_once __DIR__ . '/../../vendor/autoload.php';
 Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/../..')->load();
 
+// Load the webhook request and check if it's valid.
 $webhook = new TravisCIHandler();
 if (!$webhook->validate()) {
-    http_response_code(404);
+    http_response_code(401);
     die;
 }
 

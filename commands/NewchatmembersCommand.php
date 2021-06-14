@@ -27,7 +27,7 @@ use Longman\TelegramBot\Request;
 use TelegramBot\SupportBot\Helpers;
 
 /**
- * New chat members command
+ * Send a welcome message to new chat members.
  */
 class NewchatmembersCommand extends SystemCommand
 {
