@@ -115,7 +115,7 @@ class Helpers
         // If the user is already activated, keep the initial activation date.
         $users_to_kick = DB::getPdo()->query("
             SELECT `id`
-            FROM " . TB_USER . "
+            FROM `user`
             WHERE `joined_at` < (NOW() - INTERVAL {$expiry_time_in_s} SECOND)
               AND `activated_at` IS NULL
               AND `kicked_at` IS NULL
@@ -136,14 +136,14 @@ class Helpers
     {
         try {
             $ban_time  = strtotime(getenv('TG_SUPPORT_GROUP_BAN_TIME') ?: '1 day');
-            $kick_user = Request::kickChatMember([
+            $kick_user = Request::banChatMember([
                 'chat_id'    => getenv('TG_SUPPORT_GROUP_ID'),
                 'user_id'    => $user_id,
                 'until_date' => $ban_time,
             ]);
             if ($kick_user->isOk()) {
                 return DB::getPdo()->prepare("
-                    UPDATE " . TB_USER . "
+                    UPDATE `user`
                     SET `activated_at` = NULL,
                         `kicked_at` = NOW()
                     WHERE `id` = ?

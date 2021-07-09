@@ -16,7 +16,8 @@ namespace Longman\TelegramBot\Commands\SystemCommands;
 use LitEmoji\LitEmoji;
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\DB;
-use Longman\TelegramBot\Entities\ChatMember;
+use Longman\TelegramBot\Entities\ChatMember\ChatMemberAdministrator;
+use Longman\TelegramBot\Entities\ChatMember\ChatMemberOwner;
 use Longman\TelegramBot\Entities\ChatPermissions;
 use Longman\TelegramBot\Entities\InlineKeyboard;
 use Longman\TelegramBot\Entities\Message;
@@ -25,10 +26,7 @@ use Longman\TelegramBot\Entities\User;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
 use TelegramBot\SupportBot\Helpers;
-use Longman\TelegramBot\Entities\ChatMember\ChatMember;
-use Longman\TelegramBot\Entities\ChatMember\ChatMemberOwner;
-use Longman\TelegramBot\Entities\ChatMember\ChatMemberAdministrator
-    
+
 /**
  * Send a welcome message to new chat members.
  */
@@ -47,7 +45,7 @@ class NewchatmembersCommand extends SystemCommand
     /**
      * @var string
      */
-    protected $version = '0.5.0';
+    protected $version = '0.6.0';
 
     /**
      * @var Message
@@ -157,11 +155,8 @@ class NewchatmembersCommand extends SystemCommand
             'user_id' => $this->user_id,
         ])->getResult();
 
-        if ($chat_member instanceof ChatMember) {
-            return in_array($chat_member->getStatus(), ['creator', 'administrator'], true);
-        }
-
-        return false;
+        return $chat_member instanceof ChatMemberOwner
+            || $chat_member instanceof ChatMemberAdministrator;
     }
 
     /**
@@ -200,7 +195,7 @@ class NewchatmembersCommand extends SystemCommand
         }
 
         foreach ($bots as $bot) {
-            Request::kickChatMember([
+            Request::banChatMember([
                 'chat_id' => $this->chat_id,
                 'user_id' => $bot->getId(),
             ]);
@@ -222,7 +217,7 @@ class NewchatmembersCommand extends SystemCommand
 
         // Update "Joined Date" for new users.
         return DB::getPdo()->prepare("
-            UPDATE " . TB_USER . "
+            UPDATE `user`
             SET `joined_at` = ?
             WHERE `id` IN (?)
         ")->execute([date('Y-m-d H:i:s'), implode(',', $new_users_ids)]);

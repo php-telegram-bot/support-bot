@@ -44,7 +44,7 @@ class RulesCommand extends UserCommand
     /**
      * @var string
      */
-    protected $version = '0.2.0';
+    protected $version = '0.2.1';
 
     /**
      * @var string
@@ -65,7 +65,7 @@ class RulesCommand extends UserCommand
 
             // If the user is already activated, keep the initial activation date.
             $activated = DB::getPdo()->prepare("
-                UPDATE " . TB_USER . "
+                UPDATE `user`
                 SET `activated_at` = ?
                 WHERE `id` = ?
                   AND `activated_at` IS NULL
@@ -155,7 +155,7 @@ Also keep in mind that the [PHP Telegram Bot Support Chat](https://t.me/PHP_Tele
     {
         $statement = DB::getPdo()->prepare('
             SELECT `activated_at`
-            FROM `' . TB_USER . '`
+            FROM `user`
             WHERE `id` = ?
               AND `activated_at` IS NOT NULL
         ');
