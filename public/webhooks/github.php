@@ -114,7 +114,7 @@ function parseReleaseBody(string $body, string $user, string $repo): string
     }, $body);
 
     $github_client = new Client();
-    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'), Client::AUTH_ACCESS_TOKEN);
+    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'), Client::AUTH_CLIENT_ID);
     $github_client->addCache(new Pool(new MySQL(
         new PDO('mysql:dbname=' . getenv('TG_DB_DATABASE') . ';host=' . getenv('TG_DB_HOST'), getenv('TG_DB_USER'), getenv('TG_DB_PASSWORD'))
     )));
@@ -131,7 +131,7 @@ function parseReleaseBody(string $body, string $user, string $repo): string
             /** @var Issue $issue */
             $issue = $github_client->issue()->show($user, $repo, $id);
             return "[{$text}]({$issue['html_url']})";
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             // Silently ignore.
         }
 
@@ -140,7 +140,7 @@ function parseReleaseBody(string $body, string $user, string $repo): string
             /** @var PullRequest $pr */
             $pr = $github_client->pr()->show($user, $repo, $id);
             return "[{$text}]({$pr['html_url']})";
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             // Silently ignore.
         }
 
@@ -173,7 +173,7 @@ function sendTelegramMessage(string $chat_id, string $text): ?ServerResponse
         return Request::sendMessage(compact('chat_id', 'text', 'parse_mode'));
     } catch (TelegramException $e) {
         TelegramLog::error($e->getMessage());
-    } catch (Throwable $e) {
+    } catch (Throwable) {
         // Silently ignore.
     }
 
@@ -185,10 +185,10 @@ function sendTelegramMessage(string $chat_id, string $text): ?ServerResponse
  */
 function pullLatestAndUpdate(): void
 {
-    exec('sudo -u www-data /usr/bin/git stash');
-    exec('sudo -u www-data /usr/bin/git fetch');
-    exec('sudo -u www-data /usr/bin/git reset --hard');
-    exec('sudo -u www-data /usr/bin/git rebase');
-    exec('sudo -u www-data /usr/bin/git pull');
-    exec('sudo -u www-data /usr/local/bin/composer install --no-dev');
+    exec('/usr/bin/git stash');
+    exec('/usr/bin/git fetch');
+    exec('/usr/bin/git reset --hard');
+    exec('/usr/bin/git rebase');
+    exec('/usr/bin/git pull');
+    exec('/usr/local/bin/composer install --no-dev');
 }
