@@ -25,7 +25,10 @@ use Longman\TelegramBot\Entities\User;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
 use TelegramBot\SupportBot\Helpers;
-
+use Longman\TelegramBot\Entities\ChatMember\ChatMember;
+use Longman\TelegramBot\Entities\ChatMember\ChatMemberOwner;
+use Longman\TelegramBot\Entities\ChatMember\ChatMemberAdministrator
+    
 /**
  * Send a welcome message to new chat members.
  */
