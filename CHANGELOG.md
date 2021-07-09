@@ -11,6 +11,13 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Fixed
 ### Security
 
+## [0.11.0] - 2021-07-09
+### Changed
+- Bumped to core 0.74.
+### Fixed
+- GitHub authentication.
+- Self-update.
+
 ## [0.10.0] - 2021-06-14
 ### Added
 - Rules notice to use Pastebin instead of posting code directly.
@@ -88,6 +95,8 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.11.0]: https://github.com/php-telegram-bot/support-bot/compare/0.10.0...0.11.0
+[0.10.0]: https://github.com/php-telegram-bot/support-bot/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/php-telegram-bot/support-bot/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/php-telegram-bot/support-bot/compare/0.7.0...0.8.0
 [0.7.0]: https://github.com/php-telegram-bot/support-bot/compare/0.6.0...0.7.0
