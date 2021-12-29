@@ -43,9 +43,10 @@ Utils::logWebhookData(getenv('TG_LOGS_DIR') . '/' . getenv('TG_BOT_USERNAME') . 
 
 // Limit repos and events to serve.
 $allowed_repos_events = [
-    'php-telegram-bot/core'                 => ['release'],
-    'php-telegram-bot/support-bot'          => ['release'],
-    'php-telegram-bot/telegram-bot-manager' => ['release'],
+    'php-telegram-bot/core'                       => ['release'],
+    'php-telegram-bot/support-bot'                => ['release'],
+    'php-telegram-bot/telegram-bot-manager'       => ['release'],
+    'php-telegram-bot/inline-keyboard-pagination' => ['release'],
 ];
 
 // Get the incoming webhook data.

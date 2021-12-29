@@ -21,7 +21,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "php-telegram-bot/telegram-bot-manager": "^1.7",
-        "longman/telegram-bot": "0.74.0 as 0.73",
+        "longman/telegram-bot": "0.75.0 as 0.73",
         "noplanman/service-webhook-handler": "^0.2",
         "vlucas/phpdotenv": "^5.3",
         "elvanto/litemoji": "^4.0",

@@ -11,6 +11,12 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Fixed
 ### Security
 
+## [0.12.0] - 2021-12-29
+### Added
+- Notify about `php-telegram-bot/inline-keyboard-pagination` releases.
+### Changed
+- Bumped to core 0.75.
+
 ## [0.11.0] - 2021-07-09
 ### Changed
 - Bumped to core 0.74.
@@ -95,6 +101,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.12.0]: https://github.com/php-telegram-bot/support-bot/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/php-telegram-bot/support-bot/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/php-telegram-bot/support-bot/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/php-telegram-bot/support-bot/compare/0.8.0...0.9.0
