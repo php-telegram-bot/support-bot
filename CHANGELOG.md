@@ -11,6 +11,13 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Fixed
 ### Security
 
+## [0.13.0] - 2022-03-24
+### Added
+- Rule regarding advertisements / job offers.
+- Notify about `php-telegram-bot/fluent-keyboard` releases.
+### Changed
+- Bumped to core 0.76.
+
 ## [0.12.0] - 2021-12-29
 ### Added
 - Notify about `php-telegram-bot/inline-keyboard-pagination` releases.
@@ -101,6 +108,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.13.0]: https://github.com/php-telegram-bot/support-bot/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/php-telegram-bot/support-bot/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/php-telegram-bot/support-bot/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/php-telegram-bot/support-bot/compare/0.9.0...0.10.0

@@ -28,7 +28,7 @@ use Psr\Log\NullLogger;
 use TelegramBot\TelegramBotManager\BotManager;
 use Throwable;
 
-const VERSION = '0.12.0';
+const VERSION = '0.13.0';
 
 // Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
