@@ -47,6 +47,7 @@ $allowed_repos_events = [
     'php-telegram-bot/support-bot'                => ['release'],
     'php-telegram-bot/telegram-bot-manager'       => ['release'],
     'php-telegram-bot/inline-keyboard-pagination' => ['release'],
+    'php-telegram-bot/fluent-keyboard'            => ['release'],
 ];
 
 // Get the incoming webhook data.
