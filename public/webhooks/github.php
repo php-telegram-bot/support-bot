@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 use Github\Api\Issue;
 use Github\Api\PullRequest;
+use Github\AuthMethod;
 use Github\Client;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
@@ -79,7 +80,7 @@ function handleRelease(array $data): void
     $release = $data['release'];
     $action  = $data['action'];
 
-    if ($action === 'published' && !$release['draft'] && !$release['prerelease']) {
+    if ($action === 'released' && !$release['draft'] && !$release['prerelease']) {
         $author     = $release['author']['login'];
         $author_url = $release['author']['html_url'];
         $tag        = $release['tag_name'];
@@ -116,7 +117,7 @@ function parseReleaseBody(string $body, string $user, string $repo): string
     }, $body);
 
     $github_client = new Client();
-    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'), Client::AUTH_CLIENT_ID);
+    $github_client->authenticate(getenv('TG_GITHUB_AUTH_USER'), getenv('TG_GITHUB_AUTH_TOKEN'), AuthMethod::CLIENT_ID);
     $github_client->addCache(new Pool(new MySQL(
         new PDO('mysql:dbname=' . getenv('TG_DB_DATABASE') . ';host=' . getenv('TG_DB_HOST'), getenv('TG_DB_USER'), getenv('TG_DB_PASSWORD'))
     )));

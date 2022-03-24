@@ -9,6 +9,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Deprecated
 ### Removed
 ### Fixed
+- Trigger the release note for `released` action instead of `published`.
 ### Security
 
 ## [0.13.0] - 2022-03-24
