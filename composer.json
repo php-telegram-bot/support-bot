@@ -28,7 +28,7 @@
         "monolog/monolog": "^2.2",
         "matthiasmullie/scrapbook": "^1.4",
         "knplabs/github-api": "^3.3",
-        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/guzzle": "^7.4.3",
         "http-interop/http-factory-guzzle": "^1.0"
     },
     "require-dev": {

@@ -9,8 +9,13 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Deprecated
 ### Removed
 ### Fixed
+### Security
+
+## [0.13.1] - 2022-05-27
+### Fixed
 - Trigger the release note for `released` action instead of `published`.
 ### Security
+- Require Guzzle 7.4.3 and up.
 
 ## [0.13.0] - 2022-03-24
 ### Added
@@ -109,6 +114,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.13.1]: https://github.com/php-telegram-bot/support-bot/compare/0.13.0...0.13.1
 [0.13.0]: https://github.com/php-telegram-bot/support-bot/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/php-telegram-bot/support-bot/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/php-telegram-bot/support-bot/compare/0.10.0...0.11.0

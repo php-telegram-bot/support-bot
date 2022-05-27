@@ -28,7 +28,7 @@ use Psr\Log\NullLogger;
 use TelegramBot\TelegramBotManager\BotManager;
 use Throwable;
 
-const VERSION = '0.13.0';
+const VERSION = '0.13.1';
 
 // Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -38,11 +38,7 @@ function cache(): KeyValueStore
 {
     static $cache;
 
-    if (null === $cache) {
-        $cache = new MySQL(DB::getPdo());
-    }
-
-    return $cache;
+    return $cache ??= new MySQL(DB::getPdo());
 }
 
 try {
@@ -116,7 +112,7 @@ function initLogging(): void
 /**
  * Initialise a custom Request Client.
  */
-function initRequestClient()
+function initRequestClient(): void
 {
     $config = array_filter([
         'base_uri' => getenv('TG_REQUEST_CLIENT_BASE_URI') ?: 'https://api.telegram.org',
