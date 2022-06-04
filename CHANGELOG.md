@@ -6,6 +6,8 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 ### Changed
+- Bump core to 0.77.1
+- Bump service webhook handler
 ### Deprecated
 ### Removed
 ### Fixed
