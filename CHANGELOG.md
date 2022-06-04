@@ -6,12 +6,16 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ## [Unreleased]
 ### Added
 ### Changed
-- Bump core to 0.77.1
-- Bump service webhook handler
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [0.13.2] - 2022-06-04
+### Changed
+- Bump core to 0.77.1
+### Fixed
+- Bump service webhook handler
 
 ## [0.13.1] - 2022-05-27
 ### Fixed
@@ -116,6 +120,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.13.2]: https://github.com/php-telegram-bot/support-bot/compare/0.13.1...0.13.2
 [0.13.1]: https://github.com/php-telegram-bot/support-bot/compare/0.13.0...0.13.1
 [0.13.0]: https://github.com/php-telegram-bot/support-bot/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/php-telegram-bot/support-bot/compare/0.11.0...0.12.0
