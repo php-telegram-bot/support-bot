@@ -7,10 +7,13 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 ### Added
 - Notify group on Laravel package releases.
 ### Changed
+- Bump manager to 2.1.
+- Bump core to 0.81.
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+- Minimum PHP 8.1.
 
 ## [0.13.2] - 2022-06-04
 ### Changed

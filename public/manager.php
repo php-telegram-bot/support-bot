@@ -23,6 +23,7 @@ use MatthiasMullie\Scrapbook\Adapters\MySQL;
 use MatthiasMullie\Scrapbook\KeyValueStore;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
+use Monolog\Level;
 use Monolog\Logger;
 use Psr\Log\NullLogger;
 use TelegramBot\TelegramBotManager\BotManager;
@@ -96,14 +97,14 @@ function initLogging(): void
 
     // Main logger that handles all 'debug' and 'error' logs.
     $logger = ($debug_log || $error_log) ? new Logger('telegram_bot') : new NullLogger();
-    $debug_log && $logger->pushHandler((new StreamHandler($debug_log, Logger::DEBUG))->setFormatter(new LineFormatter(null, null, true)));
-    $error_log && $logger->pushHandler((new StreamHandler($error_log, Logger::ERROR))->setFormatter(new LineFormatter(null, null, true)));
+    $debug_log && $logger->pushHandler((new StreamHandler($debug_log, Level::Debug))->setFormatter(new LineFormatter(null, null, true)));
+    $error_log && $logger->pushHandler((new StreamHandler($error_log, Level::Error))->setFormatter(new LineFormatter(null, null, true)));
 
     // Updates logger for raw updates.
     $update_logger = new NullLogger();
     if ($update_log) {
         $update_logger = new Logger('telegram_bot_updates');
-        $update_logger->pushHandler((new StreamHandler($update_log, Logger::INFO))->setFormatter(new LineFormatter('%message%' . PHP_EOL)));
+        $update_logger->pushHandler((new StreamHandler($update_log, Level::Info))->setFormatter(new LineFormatter('%message%' . PHP_EOL)));
     }
 
     TelegramLog::initialize($logger, $update_logger);

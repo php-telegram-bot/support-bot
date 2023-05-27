@@ -24,6 +24,7 @@ use MatthiasMullie\Scrapbook\Adapters\MySQL;
 use MatthiasMullie\Scrapbook\Psr6\Pool;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
+use Monolog\Level;
 use Monolog\Logger;
 use NPM\ServiceWebhookHandler\Handlers\GitHubHandler;
 use TelegramBot\SupportBot\Webhooks\Utils;
@@ -168,8 +169,8 @@ function sendTelegramMessage(string $chat_id, string $text): ?ServerResponse
         new Telegram(getenv('TG_API_KEY'));
 
         TelegramLog::initialize(new Logger('telegram_bot_releases', [
-            (new StreamHandler(getenv('TG_LOGS_DIR') . '/releases.debug.log', Logger::DEBUG))->setFormatter(new LineFormatter(null, null, true)),
-            (new StreamHandler(getenv('TG_LOGS_DIR') . '/releases.error.log', Logger::ERROR))->setFormatter(new LineFormatter(null, null, true)),
+            (new StreamHandler(getenv('TG_LOGS_DIR') . '/releases.debug.log', Level::Debug))->setFormatter(new LineFormatter(null, null, true)),
+            (new StreamHandler(getenv('TG_LOGS_DIR') . '/releases.error.log', Level::Error))->setFormatter(new LineFormatter(null, null, true)),
         ]));
 
         $parse_mode = 'markdown';
