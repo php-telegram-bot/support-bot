@@ -5,13 +5,20 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [0.14.0] - 2023-05-27
+### Added
 - Notify group on Laravel package releases.
 ### Changed
 - Bump manager to 2.1.
 - Bump core to 0.81.
-### Deprecated
 ### Removed
-### Fixed
+- Travis CI webhook.
 ### Security
 - Minimum PHP 8.1.
 
@@ -124,6 +131,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 - Extended `.env.example` file.
 
 [Unreleased]: https://github.com/php-telegram-bot/support-bot/compare/master...develop
+[0.14.0]: https://github.com/php-telegram-bot/support-bot/compare/0.13.2...0.14.0
 [0.13.2]: https://github.com/php-telegram-bot/support-bot/compare/0.13.1...0.13.2
 [0.13.1]: https://github.com/php-telegram-bot/support-bot/compare/0.13.0...0.13.1
 [0.13.0]: https://github.com/php-telegram-bot/support-bot/compare/0.12.0...0.13.0
