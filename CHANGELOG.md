@@ -5,6 +5,7 @@ Exclamation symbols (:exclamation:) note something of importance e.g. breaking c
 
 ## [Unreleased]
 ### Added
+- Notify group on Laravel package releases.
 ### Changed
 ### Deprecated
 ### Removed
