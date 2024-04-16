@@ -85,8 +85,9 @@ class NewchatmembersCommand extends SystemCommand
         $this->kickDisallowedBots($new_bots);
 
         // Restrict all permissions for new users.
+        
         $this->restrictNewUsers($new_users);
-
+        
         // Set the joined date for all new group members.
         $this->updateUsersJoinedDate($new_users);
 
@@ -236,20 +237,30 @@ class NewchatmembersCommand extends SystemCommand
 
         foreach ($new_users as $new_user) {
             $user_id             = $new_user->getId();
-            $responses[$user_id] = Request::restrictChatMember([
-                'chat_id'     => getenv('TG_SUPPORT_GROUP_ID'),
-                'user_id'     => $user_id,
-                'permissions' => new ChatPermissions([
-                    'can_send_messages'         => false,
-                    'can_send_media_messages'   => false,
-                    'can_send_polls'            => false,
-                    'can_send_other_messages'   => false,
-                    'can_add_web_page_previews' => false,
-                    'can_change_info'           => false,
-                    'can_invite_users'          => false,
-                    'can_pin_messages'          => false,
-                ]),
-            ]);
+            
+            //Check if User has already an activation_date
+            
+            $activated = DB::getPdo()->prepare("
+                SELECT `activated_at` 
+                FROM `users`
+                WHERE `id` = ?
+            ")->execute($user_id);
+            if ($activated === NULL) {
+                $responses[$user_id] = Request::restrictChatMember([
+                    'chat_id'     => getenv('TG_SUPPORT_GROUP_ID'),
+                    'user_id'     => $user_id,
+                    'permissions' => new ChatPermissions([
+                        'can_send_messages'         => false,
+                        'can_send_media_messages'   => false,
+                        'can_send_polls'            => false,
+                        'can_send_other_messages'   => false,
+                        'can_add_web_page_previews' => false,
+                        'can_change_info'           => false,
+                        'can_invite_users'          => false,
+                        'can_pin_messages'          => false,
+                    ]),
+                ]);
+            }
         }
 
         return $responses;
